@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import vector.india.Movie_Recommendation_System_Application.model.GenresModel;
 
-@Repository("genresRepo")       	
+@Repository("genresRepo")
 public class GenresRepositoryImpl implements GenresRepository {
 
 	@Autowired
@@ -23,32 +23,45 @@ public class GenresRepositoryImpl implements GenresRepository {
 
 	@Override
 	public boolean isAddGenres(final GenresModel model) {
-		int value=template.update("insert into genres values('0',?)",new PreparedStatementSetter() {
+		int value = template.update("insert into genres values('0',?)", new PreparedStatementSetter() {
 
 			@Override
 			public void setValues(PreparedStatement ps) throws SQLException {
-				ps.setString(1,model.getGentitle());				
+				ps.setString(1, model.getGentitle());
 			}
-			
 		});
 
-		return value>0?true:false;
+		return value > 0 ? true : false;
 	}
 
 	@Override
 	public List<GenresModel> getAllGenres() {
-		list=template.query("select *from genres order by gen_id asc",new RowMapper<GenresModel>() {
+		list = template.query("select *from genres order by gen_id asc", new RowMapper<GenresModel>() {
 
 			@Override
 			public GenresModel mapRow(ResultSet rs, int rowNum) throws SQLException {
-				GenresModel gm=new GenresModel();
+				GenresModel gm = new GenresModel();
 				gm.setGenid(rs.getInt(1));
 				gm.setGentitle(rs.getString(2));
 				return gm;
 			}
-
 		});
 		return list;
+	}
+
+	@Override
+	public boolean isDeleteGenresById(final int id) {
+		int value = template.update("delete from genres where gen_id=?",new PreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setInt(1, id);
+			}
+		});
+		if (value > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

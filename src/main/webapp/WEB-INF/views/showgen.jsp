@@ -34,7 +34,7 @@
 					<tr>
 						<th scope="row">${s.getGenid()}</th>
 						<td>${s.getGentitle()}</td>
-						<td><a href="#">delete</a></td>
+						<td><a href='delgen?genid=${s.getGenid()}'>delete</a></td>
 						<td><a href="#">update</a></td>
 					</tr>
 				</c:forEach>

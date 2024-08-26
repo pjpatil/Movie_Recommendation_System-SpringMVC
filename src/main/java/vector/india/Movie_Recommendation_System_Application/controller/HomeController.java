@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vector.india.Movie_Recommendation_System_Application.model.AdminModel;
 import vector.india.Movie_Recommendation_System_Application.model.GenresModel;
 import vector.india.Movie_Recommendation_System_Application.service.GenresService;
-
 
 @Controller
 public class HomeController {
@@ -23,14 +23,17 @@ public class HomeController {
 	@Autowired
 	GenresService genresService;
 
-	@RequestMapping(value = "/")
+	List list;
+	
+	//	Call admin login.jsp page
+	@RequestMapping("/")
 	public String test(HttpServletResponse response) throws IOException {
 		return "login";
 	}
 
-	@RequestMapping(value = "/validadmin", method = RequestMethod.POST)
+	//	Check Admin login 
+	@RequestMapping("/validadmin")
 	public String adminLogin(AdminModel admin, Map map) {
-
 		if (admin.getAmobileno().equals("admin") && admin.getApassword().equals("admin")) {
 			return "home";
 		} else {
@@ -39,28 +42,42 @@ public class HomeController {
 		}
 	}
 
-
-
-	@RequestMapping(value = "/addgenres", method = RequestMethod.GET)
+	//	 call genres add page
+	@RequestMapping("/addgenres")
 	public String addNewGenres() {
-
 		return "addGenres";
 	}
 
-	@RequestMapping(value="/savegen", method = RequestMethod.POST)
+	//	Save or add genres in addGenres.jsp page
+	@RequestMapping("/savegen")
 	public String saveNewGenres(GenresModel genres, Map map) {
 		boolean b = genresService.isAddGenres(genres);
-		map.put("msg","save succeessfully...");
+		map.put("msg", "save succeessfully...");
 		return "addGenres";
-
 	}
+
+	//	 Show all genres in showgen.jsp page
 	@RequestMapping("/showgenres")
 	public String showAllGenres(Map map) {
-		List list=genresService.getAllGenres();
-
+		list = genresService.getAllGenres();
 		map.put("getallgen", list);
 		return "showgen";
 	}
 
-
+	//  delete genres by id
+	@RequestMapping("/delgen")
+	public String deleteGenres(@RequestParam("genid") Integer id,Map map) {
+		genresService.isDeleteGenresById(id);
+		list = genresService.getAllGenres();
+		map.put("getallgen", list);
+		return "showgen";
+	}
+	@RequestMapping("addmovies")
+	public String addNewMovies(Map map) {
+		list = genresService.getAllGenres();
+		map.put("getallgen", list);
+		return "addmoviespage";
+	}
+	
+	
 }

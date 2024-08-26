@@ -26,4 +26,9 @@ public class GenresServiceImpl  implements GenresService {
 		return genresRepo.getAllGenres();
 	}
 
+	@Override
+	public boolean isDeleteGenresById(int id) {
+		return genresRepo.isDeleteGenresById(id);
+	}
+
 }

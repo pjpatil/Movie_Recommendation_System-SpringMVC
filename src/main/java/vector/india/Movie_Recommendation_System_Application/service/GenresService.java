@@ -7,4 +7,5 @@ import vector.india.Movie_Recommendation_System_Application.model.GenresModel;
 public interface GenresService {
 	public boolean isAddGenres(GenresModel model);
 	public List<GenresModel> getAllGenres();
+	public boolean isDeleteGenresById(int id);
 }

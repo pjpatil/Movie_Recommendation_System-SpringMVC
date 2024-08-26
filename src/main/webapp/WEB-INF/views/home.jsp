@@ -13,7 +13,8 @@
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="<c:url value='reources/css/style.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='reources/css/style.css'/>">
 
 
 </head>
@@ -42,16 +43,16 @@
 			</li>
 
 			<!-- Categories -->
-			<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#"
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#"
 				id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
 				aria-haspopup="true" aria-expanded="false">Categories</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 					<div class="row">
 						<div class="col-md-12">
 							<h5 class="dropdown-header">Genres</h5>
-							<a class="dropdown-item" href="#">Action and adventure</a> 
-							<a class="dropdown-item" href="#">Anime</a> <a
+							<a class="dropdown-item" href="#">Action and adventure</a> <a
+								class="dropdown-item" href="#">Anime</a> <a
 								class="dropdown-item" href="#">Comedy</a> <a
 								class="dropdown-item" href="#">Documentary</a> <a
 								class="dropdown-item" href="#">Drama</a> <a
@@ -92,18 +93,15 @@
 
 
 			<!-- Add New Genres Movies -->
-			<li class="nav-item">
-				<a class="nav-link" href="addgenres">Add New Movie Genres</a>
-			</li>
+			<li class="nav-item"><a class="nav-link" href="addgenres">Add
+					New Movie Genres</a></li>
 			<!-- Display All Genres Movies -->
-			<li class="nav-item">
-				<a class="nav-link" href="showgenres">Display Movie Genres</a>
-			</li>
+			<li class="nav-item"><a class="nav-link" href="showgenres">Display
+					Movie Genres</a></li>
 
 			<!-- Add New Movies  -->
-			<li class="nav-item">
-				<a class="nav-link" href="#">Add New Movies</a>
-			</li>
+			<li class="nav-item"><a class="nav-link" href="addmovies">Add
+					New Movies</a></li>
 
 			<!-- Search bar -->
 			<li class="nav-item">
@@ -122,12 +120,14 @@
 	</nav>
 
 	<!-- Sign-in Modal -->
-	<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+	<div class="modal fade" id="signInModal" tabindex="-1" role="dialog"
+		aria-labelledby="signInModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="signInModalLabel">Sign in</h5>
-					<button type="button" class="close" data-dismiss="modal"aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -143,7 +143,8 @@
 								class="form-control" id="password" placeholder="Enter password">
 							<div class="invalid-feedback">Password cannot be empty.</div>
 						</div>
-						<button type="submit" class="btn btn-outline-success">Sign in</button>
+						<button type="submit" class="btn btn-outline-success">Sign
+							in</button>
 					</form>
 				</div>
 			</div>
