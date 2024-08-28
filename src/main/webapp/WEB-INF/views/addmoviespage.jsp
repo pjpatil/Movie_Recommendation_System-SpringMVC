@@ -18,14 +18,14 @@
 		<form name='frm' id="frm" action='' method='POST'
 			onsubmit="validateName">
 			<div class="form-group">
-				<h4>Movie Title :</h4>
+				<h5>Movie Title :</h5>
 				<input type="text" name="movietitle" value='' id="movietitle"
 					class="form-control" placeholder="Enter Movie Title here.." />
 			</div>
 			<br>
 			<div class="row">
 				<div class="col">
-					<h4>Movie Genres :</h4>
+					<h5>Movie Genres :</h5>
 					<div class="form-group" style="display: flex">
 						<select name="name" class="form-control ">
 							<option>Select Genres</option>
@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<h4>Movie Language :</h4>
+					<h5>Movie Language :</h5>
 					<div class="form-group" style="display: flex">
 						<select name="productCategory" class="form-control">
 							<option>Select Language</option>
@@ -53,7 +53,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<h4>Movie Country :</h4>
+					<h5>Movie Country :</h5>
 					<div class="form-group" style="display: flex">
 						<select name="country" class="form-control">
 							<option>Select Country</option>
@@ -71,7 +71,7 @@
 
 			<div class="row">
 				<div class="form-group col">
-					<h5>Enter Date :</h5>
+					<h5>Enter Movie Release Date :</h5>
 					<input type="date" name="relDate" value='' id="movieDate"
 						class="form-control" />
 				</div>
@@ -81,7 +81,7 @@
 						class="form-control" />
 				</div>
 				<div class="form-group col">
-					<h5>Enter Date :</h5>
+					<h5>Enter Movie Year Date :</h5>
 					<input type="date" name="relDate" value='' id="movieDate"
 						class="form-control" />
 				</div>
@@ -89,21 +89,20 @@
 			<br>
 
 			<div class="row">
-				<div class="form-group col">
+				<div class="form-group col-4">
 					<h5>Upload Movie Poster :</h5>
-					<input type="date" name="relDate" value='' id="movieDate"
-						class="form-control" />
+					<input type="file" class="form-control" id="inputGroupFile04"
+							aria-describedby="inputGroupFileAddon04" aria-label="Upload">
 				</div>
-				<div class="form-group col">
-					<h5>Upload Movie Clips :</h5>
-					<input type="time" name="relDate" value='' id="movieDate"
-						class="form-control" />
+				<div class="form-group col-8">
+					<h5>Upload Movie Clips Link :</h5>
+					<input type="url" name="cliplink" value='' id="cliplink"
+					class="form-control" placeholder="Enter Movie Link here.." />
 				</div>
 			</div>
 			<br>
 			<div class="mb-3">
-				<label for="exampleFormControlTextarea1" class="form-label">Example
-					textarea</label>
+				<h5>Movie Description :</h5>
 				<textarea class="form-control" id="exampleFormControlTextarea1"
 					rows="3"></textarea>
 			</div>

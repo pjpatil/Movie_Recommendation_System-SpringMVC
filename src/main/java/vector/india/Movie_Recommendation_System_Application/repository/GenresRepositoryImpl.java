@@ -23,7 +23,7 @@ public class GenresRepositoryImpl implements GenresRepository {
 
 	@Override
 	public boolean isAddGenres(final GenresModel model) {
-		int value = template.update("insert into genres values('0',?)", new PreparedStatementSetter() {
+		int value = template.update("insert into genresmodel values('0',?)", new PreparedStatementSetter() {
 
 			@Override
 			public void setValues(PreparedStatement ps) throws SQLException {
@@ -36,7 +36,7 @@ public class GenresRepositoryImpl implements GenresRepository {
 
 	@Override
 	public List<GenresModel> getAllGenres() {
-		list = template.query("select *from genres order by gen_id asc", new RowMapper<GenresModel>() {
+		list = template.query("select *from genresmodel order by genid ", new RowMapper<GenresModel>() {
 
 			@Override
 			public GenresModel mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -51,7 +51,7 @@ public class GenresRepositoryImpl implements GenresRepository {
 
 	@Override
 	public boolean isDeleteGenresById(final int id) {
-		int value = template.update("delete from genres where gen_id=?",new PreparedStatementSetter() {
+		int value = template.update("delete from genresmodel where genid=?",new PreparedStatementSetter() {
 			@Override
 			public void setValues(PreparedStatement ps) throws SQLException {
 				ps.setInt(1, id);

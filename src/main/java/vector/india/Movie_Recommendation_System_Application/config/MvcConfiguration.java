@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -29,11 +30,12 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 
+// It is database connection..
 	@Bean(name = "dataSource")
 	public DriverManagerDataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/movie_recommendation_system");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/movieRecommendationSystemMVC");
 		dataSource.setUsername("root");
 		dataSource.setPassword("4433");
 
@@ -44,6 +46,15 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 	public JdbcTemplate getjJdbcTemplate() {
 		JdbcTemplate template = new JdbcTemplate(this.getDataSource());
 		return template;
+	}
+
+//	It is file upload in jpg...
+	@Bean
+	public CommonsMultipartResolver multipartResolver() {
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+		multipartResolver.setDefaultEncoding("utf-8");
+		multipartResolver.setMaxUploadSize(10485760); // 10MB
+		return multipartResolver;
 	}
 
 }
