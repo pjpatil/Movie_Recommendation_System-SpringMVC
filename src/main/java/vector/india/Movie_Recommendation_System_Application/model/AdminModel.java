@@ -1,22 +1,29 @@
 package vector.india.Movie_Recommendation_System_Application.model;
 
 public class AdminModel {
-	private int adminid;
-	private String adminname;
+	private int aid;
+	private String aname;
+	private String birthday;
 	private String amobileno;
 	private String apassword;
-
-	public int getAdminid() {
-		return adminid;
+	
+	public int getAid() {
+		return aid;
 	}
-	public void setAdminid(int adminid) {
-		this.adminid = adminid;
+	public void setAid(int aid) {
+		this.aid = aid;
 	}
-	public String getAdminname() {
-		return adminname;
+	public String getAname() {
+		return aname;
 	}
-	public void setAdminname(String adminname) {
-		this.adminname = adminname;
+	public void setAname(String aname) {
+		this.aname = aname;
+	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 	public String getAmobileno() {
 		return amobileno;
@@ -30,5 +37,7 @@ public class AdminModel {
 	public void setApassword(String apassword) {
 		this.apassword = apassword;
 	}
+
+	
 
 }

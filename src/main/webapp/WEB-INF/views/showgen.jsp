@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@page isELIgnored="false"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -25,8 +25,8 @@
 				<tr>
 					<th scope="col">Sr.No</th>
 					<th scope="col">Genres Title</th>
-					<th scope="col">UPDATE</th>
 					<th scope="col">DELETE</th>
+					<th scope="col">UPDATE</th>
 				</tr>
 			</thead>
 			<tbody>

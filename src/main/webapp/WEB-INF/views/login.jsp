@@ -81,7 +81,7 @@
 					</div>
 
 					<div class="links">
-						<a href="#">Forgot Password</a> <a href="#">Sign up</a>
+						<a href="#">Forgot Password</a> <a href="reg">Sign up</a>
 					</div>
 
 					<div class="inputBox">
