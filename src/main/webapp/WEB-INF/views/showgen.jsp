@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="home.jsp"></jsp:include>
+	<jsp:include page="adminNavbar.jsp"></jsp:include>
 	<br>
 	<div class="container-fluid container-md ">
 

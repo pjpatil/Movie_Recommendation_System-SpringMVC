@@ -25,6 +25,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
+//	It is resources folder pathe connection... 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
@@ -42,6 +43,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 		return dataSource;
 	}
 
+//	 It is the get database connections..
 	@Bean(name = "template")
 	public JdbcTemplate getjJdbcTemplate() {
 		JdbcTemplate template = new JdbcTemplate(this.getDataSource());

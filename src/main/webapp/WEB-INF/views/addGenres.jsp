@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="<c:url value="/CSS/style.css" />" />
 </head>
 <body>
-	<jsp:include page="home.jsp"></jsp:include>
+	<jsp:include page="adminNavbar.jsp"></jsp:include>
 	<br>
 
 	<div class="container-fluid bg-gradient ">

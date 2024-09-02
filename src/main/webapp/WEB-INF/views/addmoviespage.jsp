@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="home.jsp"></jsp:include>
+	<jsp:include page="adminNavbar.jsp"></jsp:include>
 	<br>
 
 	<%@page
@@ -79,34 +79,24 @@
 						class="form-control" />
 				</div>
 				<div class="form-group col">
-					<h5>Enter Time :</h5>
-					<input type="time" name="movtime" value="" id="movietime"
-						class="form-control" placeholder="hh:mm" />
-				</div>
-				<div class="form-group col">
 					<h5>Enter Movie Year Date :</h5>
 					<input type="text" name="movyear" value="" id="movieyear"
 						class="form-control" placeholder="yyyy" />
 				</div>
-			</div>
-			<br>
-
-			<div class="row">
-				<div class="form-group col-4">
+				<div class="form-group col">
 					<h5>Upload Movie Poster :</h5>
 					<input type="file" class="form-control" id="inputGroupFile04" name="movposter"
 							aria-describedby="inputGroupFileAddon04" aria-label="Upload">
 							
 				</div>
-				
-				
-				<div class="form-group col-8">
+				<div class="form-group col-12">
 					<h5>Upload Movie Clips Link :</h5>
 					<input type="url" name="movlink" value="" id="cliplink"
 					class="form-control" placeholder="Enter Movie Link here.." />
 				</div>
 			</div>
 			<br>
+
 			<div class="mb-3">
 				<h5>Movie Description :</h5>
 				<textarea class="form-control" id="exampleFormControlTextarea1" name="movdescription" value=""

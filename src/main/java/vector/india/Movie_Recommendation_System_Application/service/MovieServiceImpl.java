@@ -1,5 +1,7 @@
 package vector.india.Movie_Recommendation_System_Application.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,20 @@ public class MovieServiceImpl implements MovieService {
 	MovieRepository movieRepository;
 
 	@Override
-	public boolean isAddMovies(MovieModel movie) {
-		return movieRepository.isAddMovies(movie);
+	public int addMovieAndGetId(MovieModel movie) {
+		return movieRepository.addMovieAndGetId(movie);
 	}
+
+	@Override
+	public List<MovieModel> getAllMovies() {
+		return movieRepository.getAllMovies();
+	}
+
+	@Override
+	public boolean isJoinMovieGenres(int mid, int genid) {
+		return movieRepository.isJoinMovieGenres(mid,genid);
+	}
+
+	
 
 }

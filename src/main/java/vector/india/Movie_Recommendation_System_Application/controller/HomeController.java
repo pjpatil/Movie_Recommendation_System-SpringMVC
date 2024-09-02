@@ -31,38 +31,45 @@ public class HomeController {
 	GenresService genresService;
 	@Autowired
 	MovieService movieService;
-	
+
 	List list;
-	
-	//	Call admin login.jsp page
+
+	// Call admin login.jsp page
 	@RequestMapping("/")
 	public String test(HttpServletResponse response) throws IOException {
-		return "login";
+		return "index";
 	}
 
-	//	Check Admin login 
+//	call admin login page...
+	@RequestMapping("/adminlogin")
+	public String adminLogin() {
+		return "adminlogin";
+	}
+	
+	
+	// Check Admin login
 	@RequestMapping("/validadmin")
 	public String adminLogin(AdminModel admin, Map map) {
 		if (admin.getAmobileno().equals("admin") && admin.getApassword().equals("admin")) {
-			return "home";
+			return "adminNavbar";
 		} else {
-			map.put("msg", "invalid username and password");
+			map.put("msg", "Invalid username and password");
 			return "login";
 		}
 	}
-	
+
 	@RequestMapping("/reg")
 	public String adminRegistration() {
 		return "registration";
 	}
 
-	//	 call genres add page
+	// call genres add page
 	@RequestMapping("/addgenres")
 	public String addNewGenres() {
 		return "addGenres";
 	}
 
-	//	Save or add genres in addGenres.jsp page
+	// Save or add genres in addGenres.jsp page
 	@RequestMapping("/savegen")
 	public String saveNewGenres(GenresModel genres, Map map) {
 		boolean b = genresService.isAddGenres(genres);
@@ -70,7 +77,7 @@ public class HomeController {
 		return "addGenres";
 	}
 
-	//	 Show all genres in showgen.jsp page
+	// Show all genres in showgen.jsp page
 	@RequestMapping("/showgenres")
 	public String showAllGenres(Map map) {
 		list = genresService.getAllGenres();
@@ -78,71 +85,71 @@ public class HomeController {
 		return "showgen";
 	}
 
-	//  delete genres by id
+	// delete genres by id
 	@RequestMapping("/delgen")
-	public String deleteGenres(@RequestParam("genid") Integer id,Map map) {
+	public String deleteGenres(@RequestParam("genid") Integer id, Map map) {
 		genresService.isDeleteGenresById(id);
-		list = genresService.getAllGenres();
+		List list = genresService.getAllGenres();
 		map.put("getallgen", list);
 		return "showgen";
 	}
-	
+
 //	Add movie page
-	@RequestMapping("addmovies")	
+	@RequestMapping("addmovies")
 	public String addNewMovies(Map map) {
 		list = genresService.getAllGenres();
 		map.put("getallgen", list);
 		return "addmoviespage";
 	}
-	
+
 //	Save or add Movies in addmoviepage.jsp page
 	@RequestMapping("/savemovie")
-	public String saveNewMovies(MovieModel movie,@RequestParam("genid")Integer genid, Map map,@RequestParam("movposter") CommonsMultipartFile file, HttpServletRequest request,
-			HttpSession session) {
-		boolean b = movieService.isAddMovies(movie);
-	
-		System.out.println("Genres id :"+genid);
-		
-		
-		
-		
-//		System.out.println("File Name: " + file.getName());
-		System.out.println("Original Filename: " + file.getOriginalFilename());
-//		System.out.println("Content type :" + file.getContentType());
-//		System.out.println("File size :" + file.getSize());
+	public String saveNewMovies(MovieModel movie, @RequestParam("genid") int genid, Map<String, Object> map,
+			@RequestParam("movposter") CommonsMultipartFile file, HttpServletRequest request, HttpSession session) {
 
-		byte[] bytes = file.getBytes();
-		System.out.println("Byte code img :"+bytes);
-		String path = session.getServletContext().getRealPath("/") + File.separator + "resources" + File.separator
-				+ "img" + File.separator + file.getOriginalFilename();
+		int mid = movieService.addMovieAndGetId(movie); // add movie and return movie id 
+		System.out.println("get movie id is here " + mid);
+		if (mid > 0) {
+			boolean bl = movieService.isJoinMovieGenres(mid, genid);
+			if (bl) {
+				// file save
+				byte[] bytes = file.getBytes();
+				String path = session.getServletContext().getRealPath("/") + File.separator + "resources"
+						+ File.separator + "img" + File.separator + file.getOriginalFilename();
+				System.out.println("Path is: " + path);
 
-		System.out.println("Path is: " + path);
+				try {
+					FileOutputStream fos = new FileOutputStream(path);
+					fos.write(bytes);
+					fos.close();
+					System.out.println("File upload suuuuu.....");
 
-		try {
-			FileOutputStream fos = new FileOutputStream(path);
-			fos.write(bytes);
-			fos.close();
-			System.out.println("File upload suuuuu.....");
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+				map.put("msg", "Save successful.");
+				
+			} 
+			else {
+				map.put("msg", "Failed to save movie genres join.");
+			}
+		} 
+		else {
+			map.put("msg", "Failed to save movie.");
 		}
-		
-		
-		map.put("msg", "save succeessfully...");
+
 		return "addmoviespage";
-	}
-	
+	}	
+
 //	 Show all Movies in showmovies.jsp page
 	@RequestMapping("/showmov")
-	public String showAllMovies(Map map) {
-		list = genresService.getAllGenres();
+	public String showAllMovies(Map map, HttpServletRequest request, HttpSession session) {
+		list = movieService.getAllMovies();
 		map.put("getallmovies", list);
 		return "showmovies";
 	}
+
 	
-	
-	// showmovies.jsp
 	
 	
 }

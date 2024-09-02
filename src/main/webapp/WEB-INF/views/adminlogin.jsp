@@ -87,7 +87,7 @@
 					<div class="inputBox">
 						<input type="submit" name="s" value="Login">
 					</div>
-					<p>${msg}</p>
+					<p style="color:red;">${msg}</p>
 				</form>
 
 			</div>
