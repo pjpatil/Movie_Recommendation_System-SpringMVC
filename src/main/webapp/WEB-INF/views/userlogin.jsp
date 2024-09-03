@@ -7,7 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Admin Login </title>
-<link href="<c:url value="/resources/CSS/adminlogin.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/CSS/userlogin.css" />" rel="stylesheet">
 </head>
 <body>
 	<section>
@@ -69,10 +69,10 @@
 			<div class="content">
 				<h2>Sign In</h2>
 
-				<form class="form" name="frm" action="validadmin" method="POST">
+				<form class="form" name="frm" action="" method="POST">
 					<div class="inputBox">
 						<input type="text" id="username" name="amobileno" value="" required>
-						<i>Username</i>
+						<i>User Mobile No </i>
 					</div>
 
 					<div class="inputBox">
@@ -81,7 +81,7 @@
 					</div>
 
 					<div class="links">
-						<a href="#">Forgot Password</a> <a href="adminregister">Sign up</a>
+						<a href="#">Forgot Password</a> <a href="#">Sign up</a>
 					</div>
 
 					<div class="inputBox">

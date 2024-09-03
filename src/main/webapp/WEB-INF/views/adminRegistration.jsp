@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link href="<c:url value="/resources/CSS/registration.css" />" rel="stylesheet">
+<title>Admin Registration </title>
+<link href="<c:url value="/resources/CSS/adminregistration.css" />" rel="stylesheet">
 </head>
 <body>
 	
@@ -99,7 +99,7 @@
                         <input type="password" id="name" name="name" value="" required> <i>Enter Password</i>
                     </div>
 
-                    <div class="links"> <a href="#">Forgot Password</a> <a href="#">Sign in</a>
+                    <div class="links"> <a href="#">Forgot Password</a> <a href="adminlogin">Sign in</a>
 
                     </div>
 

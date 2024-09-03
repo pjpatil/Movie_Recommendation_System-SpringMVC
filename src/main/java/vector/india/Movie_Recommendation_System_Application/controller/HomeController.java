@@ -40,13 +40,26 @@ public class HomeController {
 		return "index";
 	}
 
-//	call admin login page...
+	//	call admin login page...
 	@RequestMapping("/adminlogin")
 	public String adminLogin() {
 		return "adminlogin";
 	}
+
+	// call user login page...
+	@RequestMapping("userlogin")
+	public String userlogin() {
+		return "userlogin";
+	}
+	
+//	call Admin Registration page..
+	@RequestMapping("/adminregister")
+	public String adminRegistration() {
+		return "adminRegistration";
+	}
 	
 	
+
 	// Check Admin login
 	@RequestMapping("/validadmin")
 	public String adminLogin(AdminModel admin, Map map) {
@@ -58,10 +71,7 @@ public class HomeController {
 		}
 	}
 
-	@RequestMapping("/reg")
-	public String adminRegistration() {
-		return "registration";
-	}
+	
 
 	// call genres add page
 	@RequestMapping("/addgenres")
@@ -107,7 +117,7 @@ public class HomeController {
 	public String saveNewMovies(MovieModel movie, @RequestParam("genid") int genid, Map<String, Object> map,
 			@RequestParam("movposter") CommonsMultipartFile file, HttpServletRequest request, HttpSession session) {
 
-		int mid = movieService.addMovieAndGetId(movie); // add movie and return movie id 
+		int mid = movieService.addMovieAndGetId(movie); // add movie and return movie id
 		System.out.println("get movie id is here " + mid);
 		if (mid > 0) {
 			boolean bl = movieService.isJoinMovieGenres(mid, genid);
@@ -128,18 +138,16 @@ public class HomeController {
 					ex.printStackTrace();
 				}
 				map.put("msg", "Save successful.");
-				
-			} 
-			else {
+
+			} else {
 				map.put("msg", "Failed to save movie genres join.");
 			}
-		} 
-		else {
+		} else {
 			map.put("msg", "Failed to save movie.");
 		}
 
 		return "addmoviespage";
-	}	
+	}
 
 //	 Show all Movies in showmovies.jsp page
 	@RequestMapping("/showmov")
@@ -149,7 +157,4 @@ public class HomeController {
 		return "showmovies";
 	}
 
-	
-	
-	
 }
