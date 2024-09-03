@@ -21,8 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 import vector.india.Movie_Recommendation_System_Application.model.AdminModel;
 import vector.india.Movie_Recommendation_System_Application.model.GenresModel;
 import vector.india.Movie_Recommendation_System_Application.model.MovieModel;
+import vector.india.Movie_Recommendation_System_Application.model.UserModel;
 import vector.india.Movie_Recommendation_System_Application.service.GenresService;
 import vector.india.Movie_Recommendation_System_Application.service.MovieService;
+import vector.india.Movie_Recommendation_System_Application.service.UserService;
 
 @Controller
 public class HomeController {
@@ -31,12 +33,18 @@ public class HomeController {
 	GenresService genresService;
 	@Autowired
 	MovieService movieService;
-
+	@Autowired
+	UserService userService;
+	
 	List list;
+	
 
-	// Call admin login.jsp page
+	// Call Home index page
 	@RequestMapping("/")
-	public String test(HttpServletResponse response) throws IOException {
+	public String test(HttpServletResponse response,Map map) throws IOException {
+		
+		list = movieService.getAllMovies();
+		map.put("getallmovies", list);
 		return "index";
 	}
 
@@ -45,6 +53,11 @@ public class HomeController {
 	public String adminLogin() {
 		return "adminlogin";
 	}
+	//	call Admin Registration page..
+	@RequestMapping("/adminregister")
+	public String adminRegistration() {
+		return "adminRegistration";
+	}
 
 	// call user login page...
 	@RequestMapping("userlogin")
@@ -52,26 +65,27 @@ public class HomeController {
 		return "userlogin";
 	}
 	
-//	call Admin Registration page..
-	@RequestMapping("/adminregister")
-	public String adminRegistration() {
-		return "adminRegistration";
+	//	call User Registration page..
+	@RequestMapping("/userregister")
+	public String userRegistration() {
+		return "userRegistration";
 	}
 	
 	
+	
+//	--------------------------------------  Admin Controller   --------------------------------------------------
 
 	// Check Admin login
 	@RequestMapping("/validadmin")
-	public String adminLogin(AdminModel admin, Map map) {
+	public String cheackAdminLogin(AdminModel admin, Map map) {
 		if (admin.getAmobileno().equals("admin") && admin.getApassword().equals("admin")) {
 			return "adminNavbar";
 		} else {
 			map.put("msg", "Invalid username and password");
-			return "login";
+			return "adminlogin";
 		}
 	}
 
-	
 
 	// call genres add page
 	@RequestMapping("/addgenres")
@@ -156,5 +170,62 @@ public class HomeController {
 		map.put("getallmovies", list);
 		return "showmovies";
 	}
+	
+	
+	/*
+	 * @GetMapping("/searchMovie") public String searchMovie(@RequestParam(value =
+	 * "movieId", required = false, defaultValue = "0") int movieId,
+	 * 
+	 * @RequestParam(value = "movieTitle", required = false) String movieTitle,
+	 * 
+	 * @RequestParam(value = "movieGenre", required = false) String movieGenre,
+	 * 
+	 * @RequestParam(value = "yearFrom", required = false) String yearFrom,
+	 * 
+	 * @RequestParam(value = "yearTo", required = false) String yearTo,
+	 * 
+	 * @RequestParam(value = "movieActor", required = false) String movieActor,
+	 * Model model, Map<String, Object> map) {
+	 * 
+	 * List<MovieMasterModel> movieList = movieService.searchMovies(movieId,
+	 * movieTitle, movieGenre, yearFrom, yearTo, movieActor);
+	 * System.out.println("Search results: " + movieList); // Debug output
+	 * 
+	 * model.addAttribute("movieList", movieList);
+	 * 
+	 * // List<GenreMasterModel> list = genreService.getAllGenres(); // if (list !=
+	 * null && !list.isEmpty()) { // map.put("genres", list); // } else { //
+	 * System.out.println("No genres found"); // }
+	 * 
+	 * return "demo"; }
+	 */
 
+//	--------------------------------------  User Controller   --------------------------------------------------
+	
+	
+	@RequestMapping("validuser")
+	public String cheackUserLogin(HttpServletRequest request,UserModel model,Map map) {
+		boolean b=userService.validUser(model);
+		if (b) {
+			HttpSession session=request.getSession(true);
+			session.setAttribute("loginUser",model);
+			list = movieService.getAllMovies();
+			map.put("getallmovies", list);
+			return "userNavbar";
+		} else {
+			map.put("msg", "Invalid User Mobile No. and password");
+			return "userlogin";
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

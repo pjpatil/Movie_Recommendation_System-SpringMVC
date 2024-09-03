@@ -88,52 +88,25 @@
 	<div class="container mt-5">
 		<h2 class="mb-4">Popular Movies</h2>
 		<div class="row">
-			<div class="col-md-3">
-				<div class="card">
-					<img src="https://via.placeholder.com/250x350" class="card-img-top"
-						alt="Movie 1">
-					<div class="card-body">
-						<h5 class="card-title">Movie 1</h5>
-						<p class="card-text">Movie 1 description.</p>
-						<a href="#" class="btn btn-primary">Watch Now</a>
+		<c:forEach var="m" items="${getallmovies}">
+				<div class="col-md-3">
+					<div class="card">
+						<img
+							src="${pageContext.request.contextPath}/resources/IMG/${m.getMovtitle().replaceAll(' ','')}.jpg"
+							alt="Image not found" class="card-img-top" alt="Movie 1">
+						<div class="card-body">
+							<h5 class="card-title">Movie Title : ${m.getMovtitle()}</h5>
+
+							<p class="card-text">${m.getMovdescription()}</p>
+							<a href="${m.getMovlink()}" class="btn btn-primary">Watch Now</a>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="card">
-					<img src="https://via.placeholder.com/250x350" class="card-img-top"
-						alt="Movie 2">
-					<div class="card-body">
-						<h5 class="card-title">Movie 2</h5>
-						<p class="card-text">Movie 2 description.</p>
-						<a href="#" class="btn btn-primary">Watch Now</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="card">
-					<img src="https://via.placeholder.com/250x350" class="card-img-top"
-						alt="Movie 3">
-					<div class="card-body">
-						<h5 class="card-title">Movie 3</h5>
-						<p class="card-text">Movie 3 description.</p>
-						<a href="#" class="btn btn-primary">Watch Now</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="card">
-					<img src="https://via.placeholder.com/250x350" class="card-img-top"
-						alt="Movie 4">
-					<div class="card-body">
-						<h5 class="card-title">Movie 4</h5>
-						<p class="card-text">Movie 4 description.</p>
-						<a href="#" class="btn btn-primary">Watch Now</a>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
+		
+		
 		</div>
-	</div>
+			
 
 
 	<!-- Footer -->

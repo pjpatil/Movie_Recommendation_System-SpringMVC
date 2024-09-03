@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Admin Login </title>
+<title>User Login </title>
 <link href="<c:url value="/resources/CSS/userlogin.css" />" rel="stylesheet">
 </head>
 <body>
@@ -69,19 +69,19 @@
 			<div class="content">
 				<h2>Sign In</h2>
 
-				<form class="form" name="frm" action="" method="POST">
+				<form class="form" name="frm" action="validuser" method="POST">
 					<div class="inputBox">
-						<input type="text" id="username" name="amobileno" value="" required>
+						<input type="text" id="username" name="umobileno" value="" required>
 						<i>User Mobile No </i>
 					</div>
 
 					<div class="inputBox">
-						<input type="password" id="password" name="apassword" value=""
+						<input type="password" id="password" name="upassword" value=""
 							required> <i>Password</i>
 					</div>
 
 					<div class="links">
-						<a href="#">Forgot Password</a> <a href="#">Sign up</a>
+						<a href="#">Forgot Password</a> <a href="userregister">Sign up</a>
 					</div>
 
 					<div class="inputBox">
