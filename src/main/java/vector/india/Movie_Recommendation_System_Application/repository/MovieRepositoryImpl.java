@@ -3,6 +3,7 @@ package vector.india.Movie_Recommendation_System_Application.repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.*;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +51,8 @@ public class MovieRepositoryImpl implements MovieRepository {
 	@Override
 	public boolean isJoinMovieGenres(final int mid, final int genid) {
 
-		System.out.println("mooooooooooo id:" + mid);
-		System.out.println("gggggenn  id:" + genid);
+//		System.out.println("mooooooooooo id:" + mid);
+//		System.out.println("gggggenn  id:" + genid);
 
 		int value = template.update("INSERT INTO MovieGenresJoin values ('0',?, ?)", new PreparedStatementSetter() {
 			@Override
@@ -60,7 +61,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 				ps.setInt(2, genid);
 			}
 		});
-		System.out.println("vlaue is : " + value);
+//		System.out.println("vlaue is : " + value);
 		return value > 0 ? true : false;
 	}
 
@@ -85,6 +86,46 @@ public class MovieRepositoryImpl implements MovieRepository {
 		return list;
 	}
 
-	
+	@Override
+	public List<MovieModel> searchMovies(String movieTitle, String movieGenre, String yearFrom, String yearTo) {
+        StringBuilder sql = new StringBuilder("SELECT m.movid, m.movtitle, m.movdtrel, g.gentitle FROM moviemodel m " +
+                "JOIN moviegenresjoin mgj ON m.movid = mgj.movid " +
+                "JOIN genresmodel g ON mgj.genid = g.genid WHERE 1=1");
+
+        List<Object> params = new ArrayList<Object>();
+
+        // Add search filters if provided
+        if (movieTitle != null && !movieTitle.isEmpty()) {
+            sql.append(" AND m.movtitle LIKE ?");
+            params.add("%" + movieTitle + "%");
+        }
+        if (movieGenre != null && !movieGenre.isEmpty()) {
+            sql.append(" AND g.gentitle LIKE ?");
+            params.add("%" + movieGenre + "%");
+        }
+        if (yearFrom != null && !yearFrom.isEmpty()) {
+            sql.append(" AND m.movdtrel >= ?");
+            params.add(java.sql.Date.valueOf(yearFrom));
+        }
+        if (yearTo != null && !yearTo.isEmpty()) {
+            sql.append(" AND m.movdtrel <= ?");
+            params.add(java.sql.Date.valueOf(yearTo));
+        }
+
+        return template.query(sql.toString(), params.toArray(), new RowMapper<MovieModel>() {
+            @Override
+            public MovieModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+                MovieModel movie = new MovieModel();
+                movie.setMovid(rs.getInt("movid"));
+                movie.setMovtitle(rs.getString("movtitle"));
+                movie.setMovdtrel(rs.getString("movdtrel"));
+                movie.setGentitle(rs.getString("gentitle"));
+                return movie;
+            }
+        });
+    }
+
+		
+		
 
 }

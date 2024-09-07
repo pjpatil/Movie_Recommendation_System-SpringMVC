@@ -12,6 +12,8 @@ public interface MovieRepository {
 
 	boolean isJoinMovieGenres(int mid, int genid);
 
+	public List<MovieModel> searchMovies(String movieTitle, String movieGenre, String yearFrom, String yearTo);
+
 	
 
 }

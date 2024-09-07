@@ -64,4 +64,19 @@ public class GenresRepositoryImpl implements GenresRepository {
 		}
 	}
 
+	@Override
+	public List<GenresModel> searchByNameGenres(String name) {
+		list = template.query("select *from genresmodel where gentitle like '%"+name+"%'", new RowMapper<GenresModel>() {
+
+			@Override
+			public GenresModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+				GenresModel gm = new GenresModel();
+				gm.setGenid(rs.getInt(1));
+				gm.setGentitle(rs.getString(2));
+				return gm;
+			}
+		});
+		return list.size()>0?list:null;
+	}
+
 }

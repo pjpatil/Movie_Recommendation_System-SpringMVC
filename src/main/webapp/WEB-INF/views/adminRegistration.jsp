@@ -88,15 +88,15 @@
                     </div>
                     <div class="inputBox">
 
-                        <input type="date" id="name" name="name" value="" required> <i>Enter Birthday Date</i>
+                        <input type="date" id="name" name="bday" value="" required> <i>Enter Birthday Date</i>
                     </div>
 
                     <div class="inputBox">
-                        <input type="text" id="name" name="name" value="" required> <i>Enter Mobile No</i>
+                        <input type="text" id="name" name="number" value="" required> <i>Enter Mobile No</i>
                     </div>
 
                     <div class="inputBox">
-                        <input type="password" id="name" name="name" value="" required> <i>Enter Password</i>
+                        <input type="password" id="name" name="pass" value="" required> <i>Enter Password</i>
                     </div>
 
                     <div class="links"> <a href="#">Forgot Password</a> <a href="adminlogin">Sign in</a>

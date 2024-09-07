@@ -23,7 +23,7 @@
 <body>
 
 	<!-- Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">Movie Application</a>
 			<button class="navbar-toggler" type="button"
@@ -48,7 +48,8 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="userlogin">User Login</a></li>
-							<li><a class="dropdown-item" href="adminlogin">Admin Login</a></li>
+							<li><a class="dropdown-item" href="adminlogin">Admin
+									Login</a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -56,57 +57,83 @@
 	</nav>
 
 	<!-- Carousel -->
-	<div id="movieCarousel" class="carousel slide mt-3"
-		data-bs-ride="carousel">
+
+	<div id="carouselExampleCaptions" class="carousel slide"
+		data-bs-ride="carousel" data-bs-interval="2000">
+		<div class="carousel-indicators">
+			<button type="button" data-bs-target="#carouselExampleCaptions"
+				data-bs-slide-to="0" class="active" aria-current="true"
+				aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleCaptions"
+				data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleCaptions"
+				data-bs-slide-to="2" aria-label="Slide 3"></button>
+		</div>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="https://via.placeholder.com/1500x400"
-					class="d-block w-100" alt="Featured Movie 1">
+				<img src="https://i.ytimg.com/vi/nsC5PhXS19Y/maxresdefault.jpg"
+					class="d-block w-100" alt="img not found">
+				<div class="carousel-caption d-none d-md-block">
+					<h2>First slide label</h2>
+					<p>Some representative placeholder content for the first slide.</p>
+				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="https://via.placeholder.com/1500x400"
-					class="d-block w-100" alt="Featured Movie 2">
+				<img
+					src="https://i.ytimg.com/vi/pAs-VavcAWA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAU5-M_yvMA1-I-HQ0tou3yZ4HHPw"
+					class="d-block w-100" alt="img not found">
+				<div class="carousel-caption d-none d-md-block">
+					<h2>Second slide label</h2>
+					<p>Some representative placeholder content for the second
+						slide.</p>
+				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="https://via.placeholder.com/1500x400"
-					class="d-block w-100" alt="Featured Movie 3">
+				<img
+					src="https://images.hindustantimes.com/img/2021/01/11/1600x900/immortal_1610348165339_1610348191039.jpg"
+					class="d-block w-100" alt="img not found">
+				<div class="carousel-caption d-none d-md-block">
+					<h2>Third slide label</h2>
+					<p>Some representative placeholder content for the third slide.</p>
+				</div>
 			</div>
 		</div>
 		<button class="carousel-control-prev" type="button"
-			data-bs-target="#movieCarousel" data-bs-slide="prev">
+			data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
 				class="visually-hidden">Previous</span>
 		</button>
 		<button class="carousel-control-next" type="button"
-			data-bs-target="#movieCarousel" data-bs-slide="next">
+			data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
 			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
 				class="visually-hidden">Next</span>
 		</button>
 	</div>
 
+
 	<!-- Movie Grid -->
-	<div class="container mt-5">
-		<h2 class="mb-4">Popular Movies</h2>
+	
+
+
+	<div class="container-fluid">
+		<h2 class="h2 mt-3">Popular Movies</h2>
 		<div class="row">
-		<c:forEach var="m" items="${getallmovies}">
-				<div class="col-md-3">
+			<c:forEach var="m" items="${getallmovies}">
+				<div class="col-lg-3 col-md-6  mb-4">
 					<div class="card">
 						<img
 							src="${pageContext.request.contextPath}/resources/IMG/${m.getMovtitle().replaceAll(' ','')}.jpg"
-							alt="Image not found" class="card-img-top" alt="Movie 1">
+							alt="Image not found" class="card-img-top">
 						<div class="card-body">
-							<h5 class="card-title">Movie Title : ${m.getMovtitle()}</h5>
-
-							<p class="card-text">${m.getMovdescription()}</p>
+							<h5 class="card-title">Movie Title: ${m.getMovtitle()}</h5>
+							<!--  <p class="card-text">${m.getMovdescription()}</p>-->
 							<a href="${m.getMovlink()}" class="btn btn-primary">Watch Now</a>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
-		
-		
 		</div>
-			
+	</div>
 
 
 	<!-- Footer -->
@@ -171,8 +198,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script> -->
-
-
 </body>
 
 </html>

@@ -7,6 +7,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script type="text/javascript"
+		src="<c:url value="/resources/JS/genres.js" />"></script>
 </head>
 <body>
 	<jsp:include page="adminNavbar.jsp"></jsp:include>
@@ -14,10 +16,11 @@
 	<div class="container-fluid container-md ">
 
 		<input class="form-control" type="text" name="gentitle" value=""
-			placeholder="Type here genres..." /> <br />
+			placeholder="Type here genres..."
+			onkeyup='searchByNameGenres(this.value)' /> <br />
 
 	</div>
-	<div class="container-fluid container-md ">
+	<div class="container-fluid container-md " id="genrestable">
 		<h2>Displaye All Genres</h2>
 
 		<table class="table table-striped">
@@ -42,5 +45,8 @@
 			</tbody>
 		</table>
 	</div>
+
+
+	
 </body>
 </html>

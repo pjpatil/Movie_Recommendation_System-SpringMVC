@@ -28,6 +28,11 @@ public class MovieServiceImpl implements MovieService {
 		return movieRepository.isJoinMovieGenres(mid,genid);
 	}
 
+	@Override
+	public List<MovieModel> searchMovies(String movieTitle, String movieGenre, String yearFrom, String yearTo) {
+		return movieRepository.searchMovies(movieTitle,movieGenre,yearFrom,yearTo);
+	}
+
 	
 
 }

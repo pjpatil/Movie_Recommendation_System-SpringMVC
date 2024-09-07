@@ -1,6 +1,6 @@
 package vector.india.Movie_Recommendation_System_Application.model;
 
-public class MovieModel {
+public class MovieModel extends GenresModel {
 	private int movid;
 	private String movtitle;
 	private int movyear;

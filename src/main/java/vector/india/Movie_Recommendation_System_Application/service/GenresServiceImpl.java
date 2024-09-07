@@ -31,4 +31,11 @@ public class GenresServiceImpl  implements GenresService {
 		return genresRepo.isDeleteGenresById(id);
 	}
 
+	@Override
+	public List<GenresModel> searchByNameGenres(String name) {
+		return genresRepo.searchByNameGenres(name);
+	}
+
+	
+	
 }

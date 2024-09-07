@@ -12,9 +12,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,57 +38,54 @@ public class HomeController {
 	MovieService movieService;
 	@Autowired
 	UserService userService;
-	
+
 	List list;
-	
 
 	// Call Home index page
 	@RequestMapping("/")
-	public String test(HttpServletResponse response,Map map) throws IOException {
-		
+	public String test(HttpServletResponse response, Map map) throws IOException {
+
 		list = movieService.getAllMovies();
 		map.put("getallmovies", list);
 		return "index";
 	}
 
-	//	call admin login page...
+	// call admin login page...
 	@RequestMapping("/adminlogin")
 	public String adminLogin() {
 		return "adminlogin";
 	}
-	//	call Admin Registration page..
+
+	// call Admin Registration page..
 	@RequestMapping("/adminregister")
 	public String adminRegistration() {
 		return "adminRegistration";
 	}
 
 	// call user login page...
-	@RequestMapping("userlogin")
+	@RequestMapping("userlogin")	
 	public String userlogin() {
 		return "userlogin";
 	}
-	
-	//	call User Registration page..
+
+	// call User Registration page..
 	@RequestMapping("/userregister")
 	public String userRegistration() {
 		return "userRegistration";
 	}
-	
-	
-	
+
 //	--------------------------------------  Admin Controller   --------------------------------------------------
 
 	// Check Admin login
 	@RequestMapping("/validadmin")
 	public String cheackAdminLogin(AdminModel admin, Map map) {
-		if (admin.getAmobileno().equals("admin") && admin.getApassword().equals("admin")) {
+		if (admin.getAmobileno().equals("admin") && admin.getApassword().equals("pankaj4433")) {
 			return "adminNavbar";
 		} else {
 			map.put("msg", "Invalid username and password");
 			return "adminlogin";
 		}
 	}
-
 
 	// call genres add page
 	@RequestMapping("/addgenres")
@@ -118,6 +118,28 @@ public class HomeController {
 		return "showgen";
 	}
 
+	
+	//	Search Genres By name
+	@RequestMapping("/searchByNameGenres")
+	@ResponseBody
+	public String searchByNameGenres(@RequestParam("n") String name) {
+		List<GenresModel> list = genresService.searchByNameGenres(name);
+		String str = "";
+		str = str
+				+ "<table class='table table-striped'><thead><tr><th scope='col'>Sr.No</th><th scope='col'>Genres Title</th><th scope=col'>DELETE</th><th scope='col'>UPDATE</th></tr></thead>";
+
+		for (GenresModel m : list) {
+			str = str + "<tr>";
+			str = str + "<th scope='row'>" + m.getGenid()+ "</th>";
+			str = str + "<td>" + m.getGentitle() + "</td>";
+			str = str + "<td><a href='delgen?genid="+m.getGenid()+"'>delete</td>";
+			str = str + "<td><a href='#'>update</a></td>";
+			str = str + "</tr>";
+		}
+		str = str + "</table>";
+		return str;
+	}
+
 //	Add movie page
 	@RequestMapping("addmovies")
 	public String addNewMovies(Map map) {
@@ -141,7 +163,6 @@ public class HomeController {
 				String path = session.getServletContext().getRealPath("/") + File.separator + "resources"
 						+ File.separator + "img" + File.separator + file.getOriginalFilename();
 				System.out.println("Path is: " + path);
-
 				try {
 					FileOutputStream fos = new FileOutputStream(path);
 					fos.write(bytes);
@@ -170,57 +191,91 @@ public class HomeController {
 		map.put("getallmovies", list);
 		return "showmovies";
 	}
-	
-	
-	/*
-	 * @GetMapping("/searchMovie") public String searchMovie(@RequestParam(value =
-	 * "movieId", required = false, defaultValue = "0") int movieId,
-	 * 
-	 * @RequestParam(value = "movieTitle", required = false) String movieTitle,
-	 * 
-	 * @RequestParam(value = "movieGenre", required = false) String movieGenre,
-	 * 
-	 * @RequestParam(value = "yearFrom", required = false) String yearFrom,
-	 * 
-	 * @RequestParam(value = "yearTo", required = false) String yearTo,
-	 * 
-	 * @RequestParam(value = "movieActor", required = false) String movieActor,
-	 * Model model, Map<String, Object> map) {
-	 * 
-	 * List<MovieMasterModel> movieList = movieService.searchMovies(movieId,
-	 * movieTitle, movieGenre, yearFrom, yearTo, movieActor);
-	 * System.out.println("Search results: " + movieList); // Debug output
-	 * 
-	 * model.addAttribute("movieList", movieList);
-	 * 
-	 * // List<GenreMasterModel> list = genreService.getAllGenres(); // if (list !=
-	 * null && !list.isEmpty()) { // map.put("genres", list); // } else { //
-	 * System.out.println("No genres found"); // }
-	 * 
-	 * return "demo"; }
-	 */
 
+//	@RequestMapping("/searchByName")
+//    @ResponseBody
+//    public String searchByNameURL(@RequestParam("n") String name)
+//    {
+//  	  List<MovieModel> list=movieService.getAllMoviesByName(name);
+//  	 
+//  	  String str="";
+//  	  str=str+"<table class='table'><tr><th>MOVID</th><th>MOVTITLE</th><th>MOVYEAR</th><th>MOVTIME</th><th>MOVLANG</th><th>MOVDTREL</th><th>MOVRELCOUNTRY</th><th>MOVLINK</th><th>MOVDESCRIPTION</th><th>DELETE</th><th>UPDATE</th></tr>";
+//        for(MovieModel m:list)
+//        {
+//      	  str=str+"<tr>";
+//      	  str=str+"<td>"+m.getMovid()+"</td>";
+//      	  str=str+"<td>"+m.getMovtitle()+"</td>";
+//      	  str=str+"<td>"+m.getMovyear()+"</td>";
+//      	  str=str+"<td>"+m.getMovtime()+"</td>";
+//      	str=str+"<td>"+m.getMovlang()+"</td>";
+//      	str=str+"<td>"+m.getMovdtrel()+"</td>";
+//      	str=str+"<td>"+m.getMovrelcountry()+"</td>";
+//      	str=str+"<td>"+m.getMovlink()+"</td>";
+//      	str=str+"<td>"+m.getMovdescription()+"</td>";
+//      	
+//      	  str=str+"</tr>";
+//        }
+//  	  
+//  	  str=str+"</table>";
+//  	 
+//		return str;
+//  	  
+//    }
+
+
+	
+	
+	
+	
 //	--------------------------------------  User Controller   --------------------------------------------------
-	
-	
-	@RequestMapping("validuser")
-	public String cheackUserLogin(HttpServletRequest request,UserModel model,Map map) {
-		boolean b=userService.validUser(model);
+
+//	it is user login check and calluser home page
+	@RequestMapping("/validuser")
+	public String cheackUserLogin(HttpServletRequest request, UserModel model, Map map) {
+		boolean b = userService.validUser(model);
 		if (b) {
-			HttpSession session=request.getSession(true);
-			session.setAttribute("loginUser",model);
+			HttpSession session = request.getSession(true);
+			session.setAttribute("loginUser", model);
+			
 			list = movieService.getAllMovies();
 			map.put("getallmovies", list);
-			return "userNavbar";
+			return "userHome";
 		} else {
 			map.put("msg", "Invalid User Mobile No. and password");
 			return "userlogin";
 		}
-		
+	}
+	
+	// it call user home page 
+	@RequestMapping("/home")
+	public String homepage(Map map) {
+		list = movieService.getAllMovies();
+		map.put("getallmovies", list);
+		return "userHome";
+	}
+	
+//	it is call movie page user side
+	@RequestMapping("/movie")
+	public String searchPage(){
+		return "search";
 	}
 	
 	
-	
+	// Search movie by name , genre, and date in user page
+	@RequestMapping(value = "/searchMovie", method = RequestMethod.POST)
+    public String searchMovie(
+            @RequestParam(value = "movieTitle", required = false) String movieTitle,
+            @RequestParam(value = "movieGenre", required = false) String movieGenre,
+            @RequestParam(value = "yearFrom", required = false) String yearFrom,
+            @RequestParam(value = "yearTo", required = false) String yearTo,
+            Model model) {
+      
+        // Fetch movie list based on search criteria
+        List<MovieModel> movieList = movieService.searchMovies(movieTitle, movieGenre, yearFrom, yearTo);
+        model.addAttribute("movieList", movieList);
+        
+        return "search"; 
+    }
 	
 	
 	
