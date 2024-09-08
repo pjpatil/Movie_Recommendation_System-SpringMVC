@@ -62,18 +62,6 @@ public class HomeController {
 		return "adminRegistration";
 	}
 
-	// call user login page...
-	@RequestMapping("userlogin")	
-	public String userlogin() {
-		return "userlogin";
-	}
-
-	// call User Registration page..
-	@RequestMapping("/userregister")
-	public String userRegistration() {
-		return "userRegistration";
-	}
-
 //	--------------------------------------  Admin Controller   --------------------------------------------------
 
 	// Check Admin login
@@ -118,8 +106,7 @@ public class HomeController {
 		return "showgen";
 	}
 
-	
-	//	Search Genres By name
+	// Search Genres By name
 	@RequestMapping("/searchByNameGenres")
 	@ResponseBody
 	public String searchByNameGenres(@RequestParam("n") String name) {
@@ -130,9 +117,9 @@ public class HomeController {
 
 		for (GenresModel m : list) {
 			str = str + "<tr>";
-			str = str + "<th scope='row'>" + m.getGenid()+ "</th>";
+			str = str + "<th scope='row'>" + m.getGenid() + "</th>";
 			str = str + "<td>" + m.getGentitle() + "</td>";
-			str = str + "<td><a href='delgen?genid="+m.getGenid()+"'>delete</td>";
+			str = str + "<td><a href='delgen?genid=" + m.getGenid() + "'>delete</td>";
 			str = str + "<td><a href='#'>update</a></td>";
 			str = str + "</tr>";
 		}
@@ -222,21 +209,50 @@ public class HomeController {
 //  	  
 //    }
 
-
-	
-	
-	
-	
 //	--------------------------------------  User Controller   --------------------------------------------------
 
-//	it is user login check and calluser home page
+	// call user login page...
+	@RequestMapping("userlogin")
+	public String userlogin() {
+		return "userlogin";
+	}
+
+	// call User Registration page..
+	@RequestMapping("/userregister")
+	public String userRegistration() {
+		return "userRegistration";
+	}
+	
+	@RequestMapping("/logout")
+	public String userLogout(Map map) {
+		list = movieService.getAllMovies();
+		map.put("getallmovies", list);
+		return "index";
+	}
+	
+	@RequestMapping("/userregistersave")
+	public String userRegisterSave(UserModel model) {
+		boolean b=userService.userRegisterSave(model);
+		
+//		if(b) {
+//			System.out.println("Add user succcc");
+//		}
+//		else {
+//			System.out.println("not addd user");
+//		}
+//		
+		return "userlogin";
+	}
+
+	// it is user login check and calluser home page
 	@RequestMapping("/validuser")
-	public String cheackUserLogin(HttpServletRequest request, UserModel model, Map map) {
-		boolean b = userService.validUser(model);
-		if (b) {
+	public String cheackUserLogin(HttpServletRequest request,@RequestParam("umobileno")String uno,@RequestParam("upassword")String upass ,Map map) {
+		
+		UserModel user=userService.validUser(uno,upass);
+		if ( user!=null) {
 			HttpSession session = request.getSession(true);
-			session.setAttribute("loginUser", model);
-			
+			session.setAttribute("loginUser", user);
+
 			list = movieService.getAllMovies();
 			map.put("getallmovies", list);
 			return "userHome";
@@ -244,43 +260,43 @@ public class HomeController {
 			map.put("msg", "Invalid User Mobile No. and password");
 			return "userlogin";
 		}
+		
 	}
-	
-	// it call user home page 
+
+	// it call user home page
 	@RequestMapping("/home")
 	public String homepage(Map map) {
 		list = movieService.getAllMovies();
 		map.put("getallmovies", list);
 		return "userHome";
 	}
-	
+
 //	it is call movie page user side
-	@RequestMapping("/movie")
-	public String searchPage(){
+	@RequestMapping("/moviesearchpage")
+	public String searchPage() {
+		return "search";
+	}
+
+	// Search movie by name , genre, and date in user page
+	@RequestMapping(value = "/searchMovie", method = RequestMethod.POST)
+	public String searchMovie(@RequestParam(value = "movieTitle", required = false) String movieTitle,
+			@RequestParam(value = "movieGenre", required = false) String movieGenre,
+			@RequestParam(value = "yearFrom", required = false) String yearFrom,
+			@RequestParam(value = "yearTo", required = false) String yearTo, Model model) {
+
+		// Fetch movie list based on search criteria
+		List<MovieModel> movieList = movieService.searchMovies(movieTitle, movieGenre, yearFrom, yearTo);
+		model.addAttribute("movieList", movieList);
+
 		return "search";
 	}
 	
 	
-	// Search movie by name , genre, and date in user page
-	@RequestMapping(value = "/searchMovie", method = RequestMethod.POST)
-    public String searchMovie(
-            @RequestParam(value = "movieTitle", required = false) String movieTitle,
-            @RequestParam(value = "movieGenre", required = false) String movieGenre,
-            @RequestParam(value = "yearFrom", required = false) String yearFrom,
-            @RequestParam(value = "yearTo", required = false) String yearTo,
-            Model model) {
-      
-        // Fetch movie list based on search criteria
-        List<MovieModel> movieList = movieService.searchMovies(movieTitle, movieGenre, yearFrom, yearTo);
-        model.addAttribute("movieList", movieList);
-        
-        return "search"; 
-    }
+	@RequestMapping("/viewmovie")
+	public String watchMovie() {
+		return "watchmovies";
+	}
 	
 	
-	
-	
-	
-	
-	
+
 }

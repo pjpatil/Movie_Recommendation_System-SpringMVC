@@ -18,7 +18,7 @@
 		import="vector.india.Movie_Recommendation_System_Application.model.GenresModel,java.util.*"%>
 
 	<div class="container-fluid bg-light p-5">
-		<h1 class="text-center h1" style="font-size: 20px">Search Movie</h1>
+		<h1 class="text-center h1" >Search Movie</h1>
 		<div class="container text-center">
 			<!-- Form -->
 			<form id="frm" action="searchMovie" method="POST">

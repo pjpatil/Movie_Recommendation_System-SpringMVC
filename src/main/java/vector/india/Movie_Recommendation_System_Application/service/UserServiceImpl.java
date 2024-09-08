@@ -12,9 +12,20 @@ public class UserServiceImpl implements UserService{
 	UserRepository userRepo;
 
 	@Override
-	public boolean validUser(UserModel model) {
-		
-		return userRepo.validUser(model);
+	public boolean userRegisterSave(UserModel model) {
+		return userRepo.userRegisterSave(model);
 	}
+
+	@Override
+	public UserModel validUser(String uno, String upass) {
+		return userRepo.validUser(uno,upass);
+	}
+	
+//	@Override
+//	public boolean validUser(UserModel model) {
+//		return userRepo.validUser(model);
+//	}
+
+	
 
 }

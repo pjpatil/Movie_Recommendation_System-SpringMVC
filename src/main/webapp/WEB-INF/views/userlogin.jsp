@@ -10,6 +10,8 @@
 <link href="<c:url value="/resources/CSS/userlogin.css" />" rel="stylesheet">
 </head>
 <body>
+
+
 	<section>
 		<span></span> <span></span> <span></span> <span></span> <span></span>
 		<span></span> <span></span> <span></span> <span></span> <span></span>

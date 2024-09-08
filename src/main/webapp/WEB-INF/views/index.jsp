@@ -18,6 +18,68 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script> -->
 
+<style>
+        .card-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-watch {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            transition: opacity 0.3s;
+            opacity: 0;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .card-wrapper:hover .btn-watch {
+            opacity: 1;
+        }
+
+        .scrollable {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 20px;
+            /* Add padding to accommodate the buttons */
+        }
+
+        .scrollable .card-wrapper {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .scrollable::-webkit-scrollbar {
+            display: none;
+            /* Hide scrollbar for a cleaner look */
+        }
+
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .scroll-btn-prev {
+            left: 0;
+        }
+
+        .scroll-btn-next {
+            right: 0;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -112,10 +174,53 @@
 
 
 	<!-- Movie Grid -->
-	
+
 
 
 	<div class="container-fluid">
+	
+		<h2 class="h2 mt-3">Top 10 Movies</h2>
+		<div class="d-flex position-relative">
+			<!-- Previous Button -->
+			<button class="scroll-btn scroll-btn-prev"
+				onclick="document.querySelector('.scrollable').scrollBy(-200, 0)"> < </button>
+
+			<!-- Movie Cards Container -->
+			<div class="scrollable">
+			
+			<c:forEach var="m" items="${getallmovies}">
+				<div class="card-wrapper" style="width: 200px; margin-right: 10px;">
+					<div class="card">
+						<img src="${pageContext.request.contextPath}/resources/IMG/${m.getMovtitle().replaceAll(' ','')}.jpg" class="card-img-top"
+							alt="img not found ">
+						<div class="card-body">
+							<h5 class="card-title">${m.getMovtitle()}</h5>
+						</div>
+						
+						<button class="btn-watch"> <a href="/viewmovie/name=${m.getMovtitle()}" class="btn"> Watch Movie </a></button>
+					</div>
+					
+				</div>
+				
+				</c:forEach>
+			</div>
+
+			<!-- Next Button -->
+			<button class="scroll-btn scroll-btn-next"
+				onclick="document.querySelector('.scrollable').scrollBy(200, 0)"> > </button>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
 		<h2 class="h2 mt-3">Popular Movies</h2>
 		<div class="row">
 			<c:forEach var="m" items="${getallmovies}">
@@ -183,7 +288,7 @@
 		</div>
 
 		<div class="text-center p-3 bg-dark">
-			© 2024 Vector-India.in Video Clone | <a href="#" class="text-white">Privacy</a>
+			Â© 2024 Vector-India.in Video Clone | <a href="#" class="text-white">Privacy</a>
 			| <a href="#" class="text-white">Terms</a>
 		</div>
 	</footer>
@@ -198,6 +303,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script> -->
+        
+        <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
