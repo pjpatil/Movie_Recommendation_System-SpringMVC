@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Movie Application </title>
+<title>Movie Application</title>
 <!-- Bootstrap 5.1.3 CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -31,39 +31,38 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link "  href="home">Home</a></li>
+					<li class="nav-item"><a class="nav-link " href="home">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Movies</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Genres</a></li>
-					<li class="nav-item"><a class="nav-link" href="moviesearchpage">Search</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="moviesearchpage">Search</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">TV Shows</a></li>
-				</ul>	
+				</ul>
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<%
-						UserModel model = (UserModel) session.getAttribute("loginUser");
-						if (model != null) {
-							String uname = model.getUname();
-							out.println("<h5 style='color:#FFFFFF;padding:10px'>User Name : " + uname + "</h5>");
-						} else {
-							out.println("<h5>No session data found</h5>");
-						}
-						%>
-
-
-					</li>
+				
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							User Profile </a>
-						<ul class="dropdown-menu dropdown-menu-end"
+						<ul class="dropdown-menu dropdown-menu-end "
 							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#">View Profile</a></li>
+							<li class="text-center"><img alt="profile img"
+								style='width: 50px;'src="<c:url value="/resources/IMG/icon/profile_icon.png" />" />
+							</li>
+							<li class="text-center">
+								<%
+								UserModel model = (UserModel) session.getAttribute("loginUser");
+								if (model != null) {
+									String uname = model.getUname();
+									out.println("<h5>" + uname + "</h5>");
+								}
+								%>
+							</li>
+							<li><a class="dropdown-item " href="#">View Profile</a></li>
 							<li><a class="dropdown-item" href="#">Edit Profile</a></li>
 							<li><a class="dropdown-item" href="#">Delete Account</a></li>
-							<li><a class="dropdown-item" href="logout">Logout</a></li>
-						</ul>
-						
-					</li>
+							<li><a class="dropdown-item" style='color:red;' href="logout">Logout</a></li>
+						</ul></li>
 				</ul>
 			</div>
 		</div>

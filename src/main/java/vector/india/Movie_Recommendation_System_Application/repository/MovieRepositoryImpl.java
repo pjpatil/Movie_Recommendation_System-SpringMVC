@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import vector.india.Movie_Recommendation_System_Application.model.GenresModel;
 import vector.india.Movie_Recommendation_System_Application.model.MovieModel;
+import vector.india.Movie_Recommendation_System_Application.model.UserModel;
 
 
 
@@ -124,6 +125,35 @@ public class MovieRepositoryImpl implements MovieRepository {
             }
         });
     }
+
+	@Override
+	public MovieModel getMovieByName(String name) {
+		String sql="SELECT m.movid, m.movtitle, m.movdtrel,m.movlang,m.movdescription,m.movlink,g.gentitle FROM moviemodel m \r\n"
+				+ "JOIN moviegenresjoin mgj ON m.movid = mgj.movid \r\n"
+				+ "JOIN genresmodel g ON mgj.genid = g.genid WHERE m.movtitle='"+name+"'";
+		
+		try {
+            return template.queryForObject(sql, new RowMapper<MovieModel>() {
+
+				@Override
+				public MovieModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+					MovieModel mm=new MovieModel();
+					mm.setMovid(rs.getInt(1));
+					mm.setMovtitle(rs.getString(2));
+					mm.setMovdtrel(rs.getString(3));
+					mm.setMovlang(rs.getString(4));
+					mm.setMovdescription(rs.getString(5));
+					mm.setMovlink(rs.getString(6));
+					mm.setGentitle(rs.getString(7));
+				
+					return mm;
+				}
+            });
+            
+        } catch (Exception e) {
+            return null;
+        }
+	}
 
 		
 		

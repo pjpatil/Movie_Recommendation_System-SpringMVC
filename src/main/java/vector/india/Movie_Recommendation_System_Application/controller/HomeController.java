@@ -292,9 +292,39 @@ public class HomeController {
 	}
 	
 	
+	
+//	view movie by name in watch option any where
 	@RequestMapping("/viewmovie")
-	public String watchMovie() {
-		return "watchmovies";
+	public String watchMovie(@RequestParam("name") String name,Map<String ,Object> map) {
+		
+	    MovieModel model = movieService.getMovieByName(name);
+	    
+	    // Extract the original movie link
+	    String link = model.getMovlink();
+	    
+	    // Remove the first 17 characters and get the video ID
+	    String videoId = link.substring(17, link.indexOf('?'));
+	    
+	    // Construct the new embed URL
+	    String embedUrl = "https://www.youtube.com/embed/" + videoId;
+	    embedUrl.trim();
+	    
+	    
+	    // Update the movlink in the MovieModel
+	    model.setMovlink(embedUrl);
+	    System.out.println("link is : "+embedUrl);
+	    
+//	    System.out.println(model.getMovid());
+//	    System.out.println(model.getMovtitle());
+//	    System.out.println(model.getMovdtrel());
+//	    System.out.println(model.getMovlink()); // Should now be the embed URL
+//	    System.out.println(model.getMovdescription());
+//	    System.out.println(model.getGentitle());
+//	    
+	    map.put("movie", model);
+	    
+	    return "watchmovies";
+		
 	}
 	
 	

@@ -14,6 +14,8 @@ public interface MovieRepository {
 
 	public List<MovieModel> searchMovies(String movieTitle, String movieGenre, String yearFrom, String yearTo);
 
+	public MovieModel getMovieByName(String name);
+
 	
 
 }

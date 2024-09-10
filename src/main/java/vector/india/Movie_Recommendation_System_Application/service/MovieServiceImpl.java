@@ -33,6 +33,11 @@ public class MovieServiceImpl implements MovieService {
 		return movieRepository.searchMovies(movieTitle,movieGenre,yearFrom,yearTo);
 	}
 
+	@Override
+	public MovieModel getMovieByName(String name) {
+		return movieRepository.getMovieByName(name);
+	}
+
 	
 
 }

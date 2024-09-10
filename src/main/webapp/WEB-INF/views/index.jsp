@@ -197,7 +197,7 @@
 							<h5 class="card-title">${m.getMovtitle()}</h5>
 						</div>
 						
-						<button class="btn-watch"> <a href="/viewmovie/name=${m.getMovtitle()}" class="btn"> Watch Movie </a></button>
+						<button class="btn-watch"> <a href="viewmovie?name=${m.getMovtitle()}" class="btn"> Watch Movie </a></button>
 					</div>
 					
 				</div>
