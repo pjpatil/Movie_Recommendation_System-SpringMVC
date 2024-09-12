@@ -4,6 +4,7 @@
 <%@page import="javax.servlet.jsp.tagext.TagLibraryInfo"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page isELIgnored="false"%>
+
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -18,71 +19,92 @@
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
 
-<style>
-body {
-	background-color: black;
-}
-
-h2 {
-	font-size: 1.5rem;
-}
-
-#feedbackList li {
-	border-bottom: 1px solid #ddd;
-	padding: 10px 0;
-}
-</style>
-
+<link href='<c:url value="/resources/CSS/watchmovies.css" />'
+	rel="stylesheet">
 </head>
-<body class="Dark">
+<body>
+
 	<!-- User Menu navbar -->
 	<jsp:include page="userNavbar.jsp"></jsp:include>
 
-	<div class="container-fluid ">
-		<h1 class="h1">Movie Title : ${movie.getMovtitle()}</h1>
-		<div class="ratio ratio-16x9">
-			<iframe class="mw-75 h-75" src="${movie.getMovlink()}"
-				title="YouTube video" allowfullscreen></iframe>
-		</div>
 
-		<!-- Rating Section -->
-		<div class="row">
-			<div class="col-4 ">
-				<h2>
-					Total Rating: <span id="totalRating">4.2</span>/5
-				</h2>
-				<div class="mb-3">
-					<label for="userRating" class="form-label">Your Rating:</label> <select
-						id="userRating" class="form-select">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>
+	<div class="container-xxl">
+
+		<div class="row bg-light p-2 rounded">
+			<div class="col-12 ">
+				<div class="ratio ratio-16x9">
+					<iframe src="${movie.getMovlink()}" title="YouTube video"
+						allowfullscreen style="width: 100%; height: 100%;"></iframe>
 				</div>
-				<div class="mb-3">
-					<label for="userFeedback" class="form-label">Your Feedback:</label>
-					<textarea id="userFeedback" class="form-control" rows="4"></textarea>
+			</div>
+			<h2 class="text-center mt-2">Movie Title: ${movie.getMovtitle()}</h2>
+			<div class="col-12 ">
+				<div class="star-rating">
+					<h4>
+						<strong>Total Rating:</strong><span class="star" data-value="1">&#9733;</span>
+						<span class="star" data-value="2">&#9733;</span> <span
+							class="star" data-value="3">&#9733;</span> <span class="star"
+							data-value="4">&#9733;</span> <span class="star" data-value="5">&#9733;</span>
+						<span id="totalRating">movie.getTotalRating()</span>/5
+					</h4>
 				</div>
-				<button class="btn btn-primary" onclick="submitFeedback()">Submit
-					Feedback</button>
 			</div>
 
-			<!-- Feedback Display -->
-			<div class="col-4">
-				<h2>All Feedback:</h2>
-				<ul id="feedbackList" class="list-unstyled">
+			<div class="col-12">
+				<p class="h5">
+					<strong>Release Date:</strong> ${movie.getMovdtrel()}
+				</p>
+				<p class="h5">
+					<strong>Description:</strong> ${movie.getMovdescription()}
+				</p>
+			</div>
+
+			<!-- Feedback Form Section -->
+			<div class="col-12 col-md-6 mb-4 mb-md-0">
+				<h3>Submit Your Feedback:</h3>
+
+				<form id="feedbackForm" action="giveratinguser" method="POST">
+					<div class="text-center mb-3">
+						<div class="d-flex justify-content-center">
+							<div class="star-rating">
+								<span class="star" data-value="1">&#9733;</span> <span
+									class="star" data-value="2">&#9733;</span> <span class="star"
+									data-value="3">&#9733;</span> <span class="star" data-value="4">&#9733;</span>
+								<span class="star" data-value="5">&#9733;</span>
+							</div>
+						</div>
+						<p id="rating-value" class="mt-2">Rating: 0</p>
+					</div>
+					<div class="mb-3">
+						<label for="userFeedback" class="form-label">Your
+							Feedback:</label>
+						<textarea id="userFeedback" class="form-control" rows="4"></textarea>
+					</div>
+					<button type="button" class="btn btn-primary"
+						onclick="submitFeedback()">Submit Feedback</button>
+				</form>
+				
+			</div>
+
+			<!-- All Feedback Section -->
+
+			<div class="col-12 col-md-6">
+			
+				<h3>All Feedback:</h3>
+				<ul id="feedbackList" class="list-unstyled border p-3 overflow-auto"
+					style="max-height: 400px;">
 					<!-- Feedback items will be appended here -->
 				</ul>
 			</div>
 		</div>
+
+
 	</div>
 
+	<!-- Footer -->
+	<jsp:include page="footer.jsp"></jsp:include>
 
-
-
-	<script src="<c:url value="/resources/JS/watchmovies.js" />"></script>
+	<script src='<c:url value="/resources/JS/watchmovies.js" />'></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
 		integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"

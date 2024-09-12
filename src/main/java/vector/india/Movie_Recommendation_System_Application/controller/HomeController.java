@@ -3,6 +3,7 @@ package vector.india.Movie_Recommendation_System_Application.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,7 @@ import vector.india.Movie_Recommendation_System_Application.model.MovieModel;
 import vector.india.Movie_Recommendation_System_Application.model.UserModel;
 import vector.india.Movie_Recommendation_System_Application.service.GenresService;
 import vector.india.Movie_Recommendation_System_Application.service.MovieService;
+import vector.india.Movie_Recommendation_System_Application.service.RatingService;
 import vector.india.Movie_Recommendation_System_Application.service.UserService;
 
 @Controller
@@ -39,7 +41,13 @@ public class HomeController {
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	RatingService ratingService;
+
 	List list;
+	
+//	User Model
+	UserModel user;
 
 	// Call Home index page
 	@RequestMapping("/")
@@ -222,18 +230,19 @@ public class HomeController {
 	public String userRegistration() {
 		return "userRegistration";
 	}
-	
+
 	@RequestMapping("/logout")
-	public String userLogout(Map map) {
+	public String userLogout(HttpServletRequest request,Map map) {
+		HttpSession session = request.getSession(false);
 		list = movieService.getAllMovies();
 		map.put("getallmovies", list);
 		return "index";
 	}
-	
+
 	@RequestMapping("/userregistersave")
 	public String userRegisterSave(UserModel model) {
-		boolean b=userService.userRegisterSave(model);
-		
+		boolean b = userService.userRegisterSave(model);
+
 //		if(b) {
 //			System.out.println("Add user succcc");
 //		}
@@ -244,12 +253,15 @@ public class HomeController {
 		return "userlogin";
 	}
 
+	
+
 	// it is user login check and calluser home page
 	@RequestMapping("/validuser")
-	public String cheackUserLogin(HttpServletRequest request,@RequestParam("umobileno")String uno,@RequestParam("upassword")String upass ,Map map) {
-		
-		UserModel user=userService.validUser(uno,upass);
-		if ( user!=null) {
+	public String cheackUserLogin(HttpServletRequest request, @RequestParam("umobileno") String uno,
+			@RequestParam("upassword") String upass, Map map) {
+
+		user = userService.validUser(uno, upass);
+		if (user != null) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("loginUser", user);
 
@@ -260,7 +272,7 @@ public class HomeController {
 			map.put("msg", "Invalid User Mobile No. and password");
 			return "userlogin";
 		}
-		
+
 	}
 
 	// it call user home page
@@ -290,30 +302,28 @@ public class HomeController {
 
 		return "search";
 	}
-	
-	
-	
+
 //	view movie by name in watch option any where
 	@RequestMapping("/viewmovie")
-	public String watchMovie(@RequestParam("name") String name,Map<String ,Object> map) {
-		
-	    MovieModel model = movieService.getMovieByName(name);
-	    
-	    // Extract the original movie link
-	    String link = model.getMovlink();
-	    
-	    // Remove the first 17 characters and get the video ID
-	    String videoId = link.substring(17, link.indexOf('?'));
-	    
-	    // Construct the new embed URL
-	    String embedUrl = "https://www.youtube.com/embed/" + videoId;
-	    embedUrl.trim();
-	    
-	    
-	    // Update the movlink in the MovieModel
-	    model.setMovlink(embedUrl);
-	    System.out.println("link is : "+embedUrl);
-	    
+	public String watchMovie(@RequestParam("name") String name, Map<String, Object> map) {
+
+		MovieModel model = movieService.getMovieByName(name);
+
+		// Extract the original movie link
+		String link = model.getMovlink();
+
+		// Remove the first 17 characters and get the video ID
+		String videoId = link.substring(17, link.indexOf('?'));
+
+		// Construct the new embed URL
+		String embedUrl = "https://www.youtube.com/embed/" + videoId;
+		embedUrl.trim();
+
+		// Update the movlink in the MovieModel
+		model.setMovlink(embedUrl);
+
+//	    System.out.println("link is : "+embedUrl);
+
 //	    System.out.println(model.getMovid());
 //	    System.out.println(model.getMovtitle());
 //	    System.out.println(model.getMovdtrel());
@@ -321,12 +331,20 @@ public class HomeController {
 //	    System.out.println(model.getMovdescription());
 //	    System.out.println(model.getGentitle());
 //	    
-	    map.put("movie", model);
-	    
-	    return "watchmovies";
+		map.put("movie", model);
 		
+		return "watchmovies";
 	}
-	
-	
+
+	@RequestMapping("giveratinguser")
+	public String giveRatingMoviebyUser() {
+
+		System.out.println(user.getUname());
+		System.out.println(user.getUid());
+
+		
+		return "Redirect:watchmovies";
+
+	}
 
 }

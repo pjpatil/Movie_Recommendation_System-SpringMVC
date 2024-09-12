@@ -1,50 +1,39 @@
-/**
- * 
- */
+// Handle star rating
+  document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', () => {
+      const rating = star.getAttribute('data-value');
+      document.getElementById('rating-value').textContent = `Rating: ${rating}`;
 
-// Array to store feedback
-const feedbacks = [];
+      document.querySelectorAll('.star').forEach(star => {
+        star.classList.remove('selected');
+      });
 
-// Function to submit feedback
-function submitFeedback() {
-	const rating = document.getElementById('userRating').value;
-	const feedbackText = document.getElementById('userFeedback').value;
+      for (let i = 1; i <= rating; i++) {
+        document.querySelector(`.star[data-value="${i}"]`).classList.add('selected');
+      }
+    });
+  });
 
-	if (feedbackText.trim() === '') {
-		alert('Please enter your feedback.');
-		return;
-	}
+  // Handle feedback submission
+  function submitFeedback() {
+    const rating = document.getElementById('rating-value').textContent.split(': ')[1];
+    const feedback = document.getElementById('userFeedback').value;
 
-	// Add feedback to the array
-	feedbacks.push({ rating, feedbackText });
+    if (rating === '0' || feedback.trim() === '') {
+      alert('Please provide a rating and feedback.');
+      return;
+    }
 
-	// Update feedback display
-	displayFeedback();
+    const feedbackItem = document.createElement('li');
+    feedbackItem.textContent = `Rating: ${rating} - Feedback: ${feedback}`;
+    document.getElementById('feedbackList').appendChild(feedbackItem);
 
-	// Optionally, reset the form
-	document.getElementById('userRating').value = '1';
-	document.getElementById('userFeedback').value = '';
-}
+    // Clear form
+    document.getElementById('feedbackForm').reset();
+    document.getElementById('rating-value').textContent = 'Rating: 0';
 
-// Function to display feedback
-function displayFeedback() {
-	const feedbackList = document.getElementById('feedbackList');
-	feedbackList.innerHTML = '';
-
-	feedbacks.forEach(feedback => {
-		const listItem = document.createElement('li');
-		listItem.innerHTML = `<strong>Rating: ${feedback.rating}</strong><br>${feedback.feedbackText}`;
-		feedbackList.appendChild(listItem);
-	});
-
-	// Update total rating
-	updateTotalRating();
-}
-
-// Function to update total rating
-function updateTotalRating() {
-	const totalRatingElement = document.getElementById('totalRating');
-	const totalRating = feedbacks.reduce((sum, feedback) => sum + parseInt(feedback.rating), 0);
-	const averageRating = (feedbacks.length > 0) ? (totalRating / feedbacks.length).toFixed(1) : 0;
-	totalRatingElement.textContent = averageRating;
-}
+    // Remove star selection
+    document.querySelectorAll('.star').forEach(star => {
+      star.classList.remove('selected');
+    });
+  }

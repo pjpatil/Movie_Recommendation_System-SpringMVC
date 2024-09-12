@@ -193,7 +193,7 @@
 						<div class="card-body">
 							<h5 class="card-title">Movie Title: ${m.getMovtitle()}</h5>
 							<p class="card-text">${m.getMovdescription()}</p>
-							<a href="${m.getMovlink()}" class="btn btn-primary">Watch Now</a>
+							<a href="viewmovie?name=${m.getMovtitle()}" class="btn btn-primary">Watch Now</a>
 						</div>
 					</div>
 				</div>
@@ -203,56 +203,7 @@
 
 
 	<!-- Footer -->
-	<footer class="bg-dark text-white text-center text-lg-start mt-5 p-3">
-		<div class="container p-4">
-			<div class="row">
-				<!-- About Section -->
-				<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-					<h5 class="text-uppercase">About</h5>
-					<ul class="list-unstyled mb-0">
-						<li><a href="#" class="text-white">Company Info</a></li>
-						<li><a href="#" class="text-white">Careers</a></li>
-						<li><a href="#" class="text-white">Press Releases</a></li>
-					</ul>
-				</div>
-
-				<!-- Help Section -->
-				<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-					<h5 class="text-uppercase">Help</h5>
-					<ul class="list-unstyled mb-0">
-						<li><a href="#" class="text-white">Customer Service</a></li>
-						<li><a href="#" class="text-white">FAQs</a></li>
-						<li><a href="#" class="text-white">Contact Us</a></li>
-					</ul>
-				</div>
-
-				<!-- Account Section -->
-				<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-					<h5 class="text-uppercase">Account</h5>
-					<ul class="list-unstyled mb-0">
-						<li><a href="#" class="text-white">Your Account</a></li>
-						<li><a href="#" class="text-white">Manage Your Prime</a></li>
-						<li><a href="#" class="text-white">Watchlist</a></li>
-					</ul>
-				</div>
-
-				<!-- Social Media Section -->
-				<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-					<h5 class="text-uppercase">Follow Us</h5>
-					<ul class="list-unstyled mb-0">
-						<li><a href="#" class="text-white">Facebook</a></li>
-						<li><a href="#" class="text-white">Twitter</a></li>
-						<li><a href="#" class="text-white">Instagram</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div class="text-center p-3 bg-dark">
-			© 2024 Vector-India.in Video Clone | <a href="#" class="text-white">Privacy</a>
-			| <a href="#" class="text-white">Terms</a>
-		</div>
-	</footer>
+	<jsp:include page="footer.jsp"></jsp:include>
 
 	<!-- Bootstrap 5.1.3 JS -->
 	<script

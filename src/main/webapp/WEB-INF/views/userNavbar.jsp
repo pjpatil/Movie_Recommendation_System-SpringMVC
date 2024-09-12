@@ -54,12 +54,13 @@
 								UserModel model = (UserModel) session.getAttribute("loginUser");
 								if (model != null) {
 									String uname = model.getUname();
+									int userid=model.getUid();
 									out.println("<h5>" + uname + "</h5>");
 								}
 								%>
 							</li>
 							<li><a class="dropdown-item " href="#">View Profile</a></li>
-							<li><a class="dropdown-item" href="#">Edit Profile</a></li>
+							<li><a class="dropdown-item" href="#">Watchlist</a></li>
 							<li><a class="dropdown-item" href="#">Delete Account</a></li>
 							<li><a class="dropdown-item" style='color:red;' href="logout">Logout</a></li>
 						</ul></li>

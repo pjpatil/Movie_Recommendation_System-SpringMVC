@@ -1,0 +1,117 @@
+@charset "ISO-8859-1";
+
+.footer {
+	background-color: #343a40;
+	color: #ffffff;
+}
+
+.footer h5 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+	border-bottom: 2px solid #ffffff;
+	padding-bottom: 0.5rem;
+}
+
+.footer ul {
+	list-style: none;
+	padding: 0;
+}
+
+.footer ul li {
+	margin-bottom: 0.5rem;
+}
+
+.footer ul li a {
+	color: #ffffff;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	font-size: 0.9rem;
+	transition: color 0.3s, padding-left 0.3s;
+}
+
+.footer ul li a:hover {
+	color: #dcdcdc;
+	padding-left: 0.5rem;
+}
+
+/* Colored icons */
+.footer .fa-info-circle {
+	color: #007bff;
+}
+
+/* Blue */
+.footer .fa-briefcase {
+	color: #28a745;
+}
+
+/* Green */
+.footer .fa-newspaper {
+	color: #ffc107;
+}
+
+/* Yellow */
+.footer .fa-headset {
+	color: #17a2b8;
+}
+
+/* Teal */
+.footer .fa-question-circle {
+	color: #dc3545;
+}
+
+/* Red */
+.footer .fa-envelope {
+	color: #6f42c1;
+}
+
+/* Purple */
+.footer .fa-user {
+	color: #e83e8c;
+}
+
+/* Pink */
+.footer .fa-user-cog {
+	color: #fd7e14;
+}
+
+/* Orange */
+.footer .fa-list {
+	color: #20c997;
+}
+
+/* Light Green */
+.footer .fa-facebook-f {
+	color: #4267b2;
+}
+
+/* Facebook Blue */
+.footer .fa-twitter {
+	color: #1da1f2;
+}
+
+/* Twitter Blue */
+.footer .fa-instagram {
+	color: #c13584;
+}
+
+/* Instagram Pink */
+.footer .footer-icon {
+	margin-right: 10px;
+	font-size: 1.2rem;
+	/* Adjusted size */
+}
+
+.footer .text-center {
+	background-color: #212529;
+}
+
+.footer .text-center a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.footer .text-center a:hover {
+	text-decoration: underline;
+}

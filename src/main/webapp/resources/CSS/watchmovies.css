@@ -1,0 +1,40 @@
+ @charset "ISO-8859-1";
+body {
+    background-color: black;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+#feedbackList li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+/* Star CSS */
+.star-rating {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.star {
+    font-size: 2rem;
+    color: gray;
+    transition: color 0.2s;
+}
+
+.star:hover,
+.star:hover ~ .star {
+    color: gold;
+}
+
+.star.selected {
+    color: gold;
+}
+
+.star-rating-text {
+    font-size: 1.5rem;
+    color: gold;
+}

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Movie Application</title>
 <!-- Bootstrap 5.1.3 CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -18,68 +18,7 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script> -->
 
-<style>
-        .card-wrapper {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-watch {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
-            transition: opacity 0.3s;
-            opacity: 0;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .card-wrapper:hover .btn-watch {
-            opacity: 1;
-        }
-
-        .scrollable {
-            overflow-x: auto;
-            white-space: nowrap;
-            padding-bottom: 20px;
-            /* Add padding to accommodate the buttons */
-        }
-
-        .scrollable .card-wrapper {
-            display: inline-block;
-            vertical-align: top;
-        }
-
-        .scrollable::-webkit-scrollbar {
-            display: none;
-            /* Hide scrollbar for a cleaner look */
-        }
-
-        .scroll-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1000;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .scroll-btn-prev {
-            left: 0;
-        }
-
-        .scroll-btn-next {
-            right: 0;
-        }
-    </style>
-
+<link href='<c:url value="/resources/CSS/index.css" />' rel="stylesheet">
 </head>
 
 <body>
@@ -118,8 +57,9 @@
 		</div>
 	</nav>
 
-	<!-- Carousel -->
 
+
+	<!-- Carousel -->
 	<div id="carouselExampleCaptions" class="carousel slide"
 		data-bs-ride="carousel" data-bs-interval="2000">
 		<div class="carousel-indicators">
@@ -173,54 +113,50 @@
 	</div>
 
 
+
+
 	<!-- Movie Grid -->
-
-
-
 	<div class="container-fluid">
-	
+
 		<h2 class="h2 mt-3">Top 10 Movies</h2>
 		<div class="d-flex position-relative">
 			<!-- Previous Button -->
 			<button class="scroll-btn scroll-btn-prev"
-				onclick="document.querySelector('.scrollable').scrollBy(-200, 0)"> < </button>
+				onclick="document.querySelector('.scrollable').scrollBy(-200, 0)">
+				<</button>
 
 			<!-- Movie Cards Container -->
 			<div class="scrollable">
-			
-			<c:forEach var="m" items="${getallmovies}">
-				<div class="card-wrapper" style="width: 200px; margin-right: 10px;">
-					<div class="card">
-						<img src="${pageContext.request.contextPath}/resources/IMG/${m.getMovtitle().replaceAll(' ','')}.jpg" class="card-img-top"
-							alt="img not found ">
-						<div class="card-body">
-							<h5 class="card-title">${m.getMovtitle()}</h5>
+
+				<c:forEach var="m" items="${getallmovies}">
+					<div class="card-wrapper" style="width: 200px; margin-right: 10px;">
+						<div class="card">
+							<img
+								src="${pageContext.request.contextPath}/resources/IMG/${m.getMovtitle().replaceAll(' ','')}.jpg"
+								class="card-img-top" alt="img not found ">
+							<div class="card-body">
+								<h5 class="card-title">${m.getMovtitle()}</h5>
+							</div>
+
+							<button class="btn-watch">
+								<a href="#" class="btn"> Watch Movie </a>
+							</button>
 						</div>
-						
-						<button class="btn-watch"> <a href="viewmovie?name=${m.getMovtitle()}" class="btn"> Watch Movie </a></button>
+
 					</div>
-					
-				</div>
-				
+
 				</c:forEach>
 			</div>
 
 			<!-- Next Button -->
 			<button class="scroll-btn scroll-btn-next"
-				onclick="document.querySelector('.scrollable').scrollBy(200, 0)"> > </button>
+				onclick="document.querySelector('.scrollable').scrollBy(200, 0)">
+				></button>
 		</div>
 
 
 
-
-
-
-
-
-
-
-
-
+		<!-- Popular Movies -->
 		<h2 class="h2 mt-3">Popular Movies</h2>
 		<div class="row">
 			<c:forEach var="m" items="${getallmovies}">
@@ -232,66 +168,32 @@
 						<div class="card-body">
 							<h5 class="card-title">Movie Title: ${m.getMovtitle()}</h5>
 							<!--  <p class="card-text">${m.getMovdescription()}</p>-->
-							<a href="${m.getMovlink()}" class="btn btn-primary">Watch Now</a>
+							<a href="#" class="btn btn-primary">Watch Now</a>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
+
+		<!-- all desk  -->
+		<div class="row ">
+			<img class="col-6" Style="width: 600px"
+				alt="mobile-tablet-desktop img not found!"
+				src='<c:url value="/resources/IMG/MobileTabletDesktop.jpg" />'>
+			<div class="col-6 ">
+				<h1 class="h1 text-center mt-5"><strong>Watch Everywhere</strong></h1>
+				<h3 >Stream unlimited movies and TV shows on your phone, tablet,
+					laptop, and TV.</h3>
+
+			</div>
+		</div>
+
+
 	</div>
 
 
 	<!-- Footer -->
-	<footer class="bg-dark text-white text-center text-lg-start mt-5 p-3">
-		<div class="container p-4">
-			<div class="row">
-				<!-- About Section -->
-				<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-					<h5 class="text-uppercase">About</h5>
-					<ul class="list-unstyled mb-0">
-						<li><a href="#" class="text-white">Company Info</a></li>
-						<li><a href="#" class="text-white">Careers</a></li>
-						<li><a href="#" class="text-white">Press Releases</a></li>
-					</ul>
-				</div>
-
-				<!-- Help Section -->
-				<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-					<h5 class="text-uppercase">Help</h5>
-					<ul class="list-unstyled mb-0">
-						<li><a href="#" class="text-white">Customer Service</a></li>
-						<li><a href="#" class="text-white">FAQs</a></li>
-						<li><a href="#" class="text-white">Contact Us</a></li>
-					</ul>
-				</div>
-
-				<!-- Account Section -->
-				<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-					<h5 class="text-uppercase">Account</h5>
-					<ul class="list-unstyled mb-0">
-						<li><a href="#" class="text-white">Your Account</a></li>
-						<li><a href="#" class="text-white">Manage Your Prime</a></li>
-						<li><a href="#" class="text-white">Watchlist</a></li>
-					</ul>
-				</div>
-
-				<!-- Social Media Section -->
-				<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-					<h5 class="text-uppercase">Follow Us</h5>
-					<ul class="list-unstyled mb-0">
-						<li><a href="#" class="text-white">Facebook</a></li>
-						<li><a href="#" class="text-white">Twitter</a></li>
-						<li><a href="#" class="text-white">Instagram</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div class="text-center p-3 bg-dark">
-			© 2024 Vector-India.in Video Clone | <a href="#" class="text-white">Privacy</a>
-			| <a href="#" class="text-white">Terms</a>
-		</div>
-	</footer>
+	<jsp:include page="footer.jsp"></jsp:include>
 
 	<!-- Bootstrap 5.1.3 JS -->
 	<script
@@ -303,11 +205,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script> -->
-        
-        <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<!-- Bootstrap JS and dependencies -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

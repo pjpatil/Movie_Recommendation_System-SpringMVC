@@ -1,0 +1,62 @@
+@charset "ISO-8859-1";
+
+
+.card-wrapper {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-watch {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	border: none;
+	transition: opacity 0.3s;
+	opacity: 0;
+	text-align: center;
+	padding: 10px;
+}
+
+.card-wrapper:hover .btn-watch {
+	opacity: 1;
+}
+
+.scrollable {
+	overflow-x: auto;
+	white-space: nowrap;
+	padding-bottom: 20px;
+	/* Add padding to accommodate the buttons */
+}
+
+.scrollable .card-wrapper {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.scrollable::-webkit-scrollbar {
+	display: none;
+	/* Hide scrollbar for a cleaner look */
+}
+
+.scroll-btn {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 1000;
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.scroll-btn-prev {
+	left: 0;
+}
+
+.scroll-btn-next {
+	right: 0;
+}
