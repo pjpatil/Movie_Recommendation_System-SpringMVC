@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import vector.india.Movie_Recommendation_System_Application.model.AdminModel;
 import vector.india.Movie_Recommendation_System_Application.model.GenresModel;
 import vector.india.Movie_Recommendation_System_Application.model.MovieModel;
+import vector.india.Movie_Recommendation_System_Application.model.RatingModel;
 import vector.india.Movie_Recommendation_System_Application.model.UserModel;
 import vector.india.Movie_Recommendation_System_Application.service.GenresService;
 import vector.india.Movie_Recommendation_System_Application.service.MovieService;
@@ -45,9 +46,14 @@ public class HomeController {
 	RatingService ratingService;
 
 	List list;
-	
+
 //	User Model
 	UserModel user;
+
+//	Movie model
+	MovieModel mmodel;
+
+//	HttpSession session;
 
 	// Call Home index page
 	@RequestMapping("/")
@@ -75,7 +81,7 @@ public class HomeController {
 	// Check Admin login
 	@RequestMapping("/validadmin")
 	public String cheackAdminLogin(AdminModel admin, Map map) {
-		if (admin.getAmobileno().equals("admin") && admin.getApassword().equals("pankaj4433")) {
+		if (admin.getAmobileno().equals("8262877168") && admin.getApassword().equals("pankaj4433")) {
 			return "adminNavbar";
 		} else {
 			map.put("msg", "Invalid username and password");
@@ -230,10 +236,12 @@ public class HomeController {
 	public String userRegistration() {
 		return "userRegistration";
 	}
+	
+	
 
 	@RequestMapping("/logout")
-	public String userLogout(HttpServletRequest request,Map map) {
-		HttpSession session = request.getSession(false);
+	public String userLogout(HttpServletRequest request, Map map) {
+//		HttpSession session = request.getSession(false);
 		list = movieService.getAllMovies();
 		map.put("getallmovies", list);
 		return "index";
@@ -242,18 +250,9 @@ public class HomeController {
 	@RequestMapping("/userregistersave")
 	public String userRegisterSave(UserModel model) {
 		boolean b = userService.userRegisterSave(model);
-
-//		if(b) {
-//			System.out.println("Add user succcc");
-//		}
-//		else {
-//			System.out.println("not addd user");
-//		}
-//		
+		
 		return "userlogin";
 	}
-
-	
 
 	// it is user login check and calluser home page
 	@RequestMapping("/validuser")
@@ -262,7 +261,7 @@ public class HomeController {
 
 		user = userService.validUser(uno, upass);
 		if (user != null) {
-			HttpSession session = request.getSession(true);
+			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", user);
 
 			list = movieService.getAllMovies();
@@ -273,6 +272,13 @@ public class HomeController {
 			return "userlogin";
 		}
 
+	}
+	
+	// View User Profile 
+	@RequestMapping("/viewprofile")
+	public String viewProfile() {
+		
+		return "userProfile";
 	}
 
 	// it call user home page
@@ -307,10 +313,10 @@ public class HomeController {
 	@RequestMapping("/viewmovie")
 	public String watchMovie(@RequestParam("name") String name, Map<String, Object> map) {
 
-		MovieModel model = movieService.getMovieByName(name);
+		mmodel = movieService.getMovieByName(name);
 
 		// Extract the original movie link
-		String link = model.getMovlink();
+		String link = mmodel.getMovlink();
 
 		// Remove the first 17 characters and get the video ID
 		String videoId = link.substring(17, link.indexOf('?'));
@@ -320,31 +326,47 @@ public class HomeController {
 		embedUrl.trim();
 
 		// Update the movlink in the MovieModel
-		model.setMovlink(embedUrl);
+		mmodel.setMovlink(embedUrl);
 
 //	    System.out.println("link is : "+embedUrl);
 
+		
 //	    System.out.println(model.getMovid());
 //	    System.out.println(model.getMovtitle());
 //	    System.out.println(model.getMovdtrel());
 //	    System.out.println(model.getMovlink()); // Should now be the embed URL
 //	    System.out.println(model.getMovdescription());
 //	    System.out.println(model.getGentitle());
-//	    
-		map.put("movie", model);
-		
+		int movieid = mmodel.getMovid();
+		List rlist=ratingService.movieRatingbyUser(movieid);
+		map.put("userRating", rlist);
+		map.put("movie", mmodel);
+
 		return "watchmovies";
 	}
 
-	@RequestMapping("giveratinguser")
-	public String giveRatingMoviebyUser() {
+	@RequestMapping("/giveratinguser")
+	public String giveRatingMoviebyUser(RatingModel rating, Map map) {
 
-		System.out.println(user.getUname());
+		int uid = user.getUid();
+		int movieid = mmodel.getMovid();
 		System.out.println(user.getUid());
+		System.out.println(mmodel.getMovid());
+		System.out.println(rating.getNumrating());
+		System.out.println(rating.getFeedback());
 
+		boolean b = ratingService.giveRatingMoviebyUser(rating,uid,movieid);
 		
-		return "Redirect:watchmovies";
+//		list = movieService.getAllMovies();
+//		map.put("getallmovies", list);
+		
+		List rlist=ratingService.movieRatingbyUser(movieid);
+		map.put("userRating", rlist);
+		map.put("movie", mmodel);
+		
 
+		return "watchmovies";
 	}
 
+	
 }

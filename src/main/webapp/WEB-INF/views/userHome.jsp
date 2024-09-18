@@ -114,10 +114,10 @@
 			</div>
 			<div class="carousel-item">
 				<img
-					src="https://images.hindustantimes.com/img/2021/01/11/1600x900/immortal_1610348165339_1610348191039.jpg"
+					src="https://static.moviecrow.com/marquee/kalki-2898-ad-ott-release-plans-for-the-prabhas-starrer/230663_thumb_665.jpg"
 					class="d-block w-100" alt="img not found">
 				<div class="carousel-caption d-none d-md-block">
-					<h2>Third slide label</h2>
+					<h2 class="h2">Kalki</h2>
 					<p>Some representative placeholder content for the third slide.</p>
 				</div>
 			</div>

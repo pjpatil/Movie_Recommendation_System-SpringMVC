@@ -1,6 +1,6 @@
 package vector.india.Movie_Recommendation_System_Application.model;
 
-public class RatingModel extends MovieModel {
+public class RatingModel extends MovieModel{
 	private int watchId;
 	private float numrating;
 	private float totalrating;

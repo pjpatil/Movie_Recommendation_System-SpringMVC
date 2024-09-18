@@ -11,8 +11,27 @@
 <title>Admin Page</title>
 
 <link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+	crossorigin="anonymous"></script>
+
+<!-- <link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
+<link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	rel="stylesheet">
+	rel="stylesheet"> -->
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='reources/css/style.css'/>">
 
@@ -24,7 +43,7 @@
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="#">Movie Application</a>
+		<a class="navbar-brand fw-bold" href="#">Movie Application</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -32,98 +51,52 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item"><a class="nav-link active"
+				<!-- Home Page  -->
+				<li class="nav-item"><a class="nav-link active text-light fw-bold"
 					aria-current="page" href="#">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="showmov">Movies</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">TV Shows</a></li>
 
+				<!-- Display All Movies  -->
+				<li class="nav-item"><a class="nav-link text-light fw-bold"
+					href="showmov">Movies</a></li>
 
-				<!-- Add New Genres Movies -->
-				<li class="nav-item"><a class="nav-link" href="addgenres">Add
-						New Genres</a></li>
-				<!-- Display All Genres Movies -->
-				<li class="nav-item"><a class="nav-link" href="showgenres">Display
-						Movie Genres</a></li>
+				<!-- TV Shows -->
+				<li class="nav-item"><a class="nav-link text-light fw-bold" href="#">TV
+						Shows</a></li>
+
+				<!-- Display All Genres  -->
+				<li class="nav-item"><a class="nav-link text-light fw-bold"
+					href="showgenres">Display Genres</a></li>
+
+				<!-- Add New Genres -->
+				<li class="nav-item"><a class="nav-link text-light fw-bold"
+					href="addgenres">Add New Genres</a></li>
 
 				<!-- Add New Movies  -->
-				<li class="nav-item"><a class="nav-link" href="addmovies">Add
-						New Movies</a></li>
-
-				<!-- Categories -->
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#"
-					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false">Categories</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<div class="row">
-							<div class="col-md-12">
-								<h5 class="dropdown-header">Genres</h5>
-								<a class="dropdown-item" href="#">Action and adventure</a> <a
-									class="dropdown-item" href="#">Anime</a> <a
-									class="dropdown-item" href="#">Comedy</a> <a
-									class="dropdown-item" href="#">Documentary</a> <a
-									class="dropdown-item" href="#">Drama</a> <a
-									class="dropdown-item" href="#">Fantasy</a> <a
-									class="dropdown-item" href="#">Horror</a> <a
-									class="dropdown-item" href="#">Kids</a> <a
-									class="dropdown-item" href="#">Mystery and thrillers</a> <a
-									class="dropdown-item" href="#">Romance</a> <a
-									class="dropdown-item" href="#">Science fiction</a>
-							</div>
-
-						</div>
-					</div></li>
-
-				<!-- Language -->
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#"
-					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"> Movies Language </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<div class="row">
-
-							<div class="col-md-12">
-								<h5 class="dropdown-header">Featured collections</h5>
-								<a class="dropdown-item" href="#">Hindi</a> <a
-									class="dropdown-item" href="#">English</a> <a
-									class="dropdown-item" href="#">Telugu</a> <a
-									class="dropdown-item" href="#">Tamil</a> <a
-									class="dropdown-item" href="#">Malayalam</a> <a
-									class="dropdown-item" href="#">Kannada</a> <a
-									class="dropdown-item" href="#">Marathi</a> <a
-									class="dropdown-item" href="#">Punjabi</a> <a
-									class="dropdown-item" href="#">Gujarati</a> <a
-									class="dropdown-item" href="#">Bengali</a>
-							</div>
-						</div>
-					</div></li>
-
-
-
+				<li class="nav-item "><a class="nav-link text-light fw-bold"
+					href="addmovies">Add New Movies</a></li>
 
 				<!-- Search bar -->
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<form class="d-flex">
 						<input class="form-control me-2" type="search"
 							placeholder="Search" aria-label="Search">
 						<button class="btn btn-outline-success" type="submit">Search</button>
 					</form>
-				</li>
+				</li> -->
 
-		
 			</ul>
-			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-				<li class="nav-item"><a class="nav-link" href="adminlogin">Logout</a></li>
-				<!-- <li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Login </a>
+			<ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+				<!-- <li class="nav-item"><a class="nav-link" href="#">Admin Profile </a></li> -->
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle text-light" href="#"
+					id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+					aria-expanded="false">Admin</a>
 					<ul class="dropdown-menu dropdown-menu-end"
 						aria-labelledby="navbarDropdown">
-						<li><a class="dropdown-item" href="#">User Login</a></li>
-						<li><a class="dropdown-item" href="adminlogin">Admin
-								Login</a></li>
-					</ul></li> -->
+						<li><a class="dropdown-item fw-bold " href="#">View Profile</a></li>
+						<li><a class="dropdown-item fw-bold " href="#">Delete Profile</a></li>
+						<li><a class="dropdown-item fw-bold " href="adminlogin">Logout</a></li>
+					</ul></li>
 			</ul>
 		</div>
 	</div>
@@ -170,11 +143,20 @@
 	</div>
  -->
 	<!-- Bootstrap js -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+		integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+		crossorigin="anonymous"></script>
 	<script src="/JS/home.js"></script>
 </body>
 

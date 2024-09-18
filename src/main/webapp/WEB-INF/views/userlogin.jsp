@@ -71,15 +71,17 @@
 			<div class="content">
 				<h2>Sign In</h2>
 
-				<form class="form" name="frm" action="validuser" method="POST">
+				<form class="form" name="frm" action="validuser" method="POST" onsubmit="return validateForm()">
 					<div class="inputBox">
-						<input type="text" id="username" name="umobileno" value="" required>
+						<input type="text" id="username" name="umobileno" value="" maxlength="10" onkeyup="validateMobileNumber()" autocomplete="off" required>
 						<i>User Mobile No </i>
+						<p id="error-message-mobile" class="error" style="color:red;"></p>
 					</div>
 
 					<div class="inputBox">
-						<input type="password" id="password" name="upassword" value=""
-							required> <i>Password</i>
+						<input type="password" id="password" name="upassword" value="" onkeyup="validatePassword()" autocomplete="off" required> 
+						<i>Password</i>
+						  <p id="error-message-password" class="error" style="color:red;"></p>
 					</div>
 
 					<div class="links">
@@ -87,13 +89,16 @@
 					</div>
 
 					<div class="inputBox">
-						<input type="submit" name="s" value="Login">
+						<input type="submit" name="s" value="Login" >
 					</div>
-					<p style="color:red;">${msg}</p>
+					<p id="server-message" class="error" style="color:red;">${msg}</p>
 				</form>
 
 			</div>
 		</div>
 	</section>
+	
+	
+	<script src='<c:url value="/resources/JS/userlogin.js" />'></script>
 </body>
 </html>

@@ -21,98 +21,93 @@
 <link href='<c:url value="/resources/CSS/index.css" />' rel="stylesheet">
 </head>
 
-<body>
+<body style="color: #000;background-color:#ffffff ;">
 
 	<!-- Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Movie Application</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top p-2">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Movie Application</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active text-light fw-bold" aria-current="page" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-light fw-bold" href="#">Movies</a></li>
+                    <li class="nav-item disabled " aria-disabled="true"><a class="nav-link fw-bold" href="#">TV Shows</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="userlogin">User Login</a></li>
+                            <li><a class="dropdown-item" href="adminlogin">Admin Login</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+	<div class="container-fluid">
+		<!-- Carousel -->
+		<div id="carouselExampleCaptions" class="carousel slide"
+			data-bs-ride="carousel" data-bs-interval="2000">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselExampleCaptions"
+					data-bs-slide-to="0" class="active" aria-current="true"
+					aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions"
+					data-bs-slide-to="1" aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions"
+					data-bs-slide-to="2" aria-label="Slide 3"></button>
+			</div>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="https://i.ytimg.com/vi/nsC5PhXS19Y/maxresdefault.jpg"
+						class="d-block w-100" alt="img not found">
+					<div class="carousel-caption d-none d-md-block">
+						<h2>First slide label</h2>
+						<p>Some representative placeholder content for the first
+							slide.</p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img
+						src="https://i.ytimg.com/vi/pAs-VavcAWA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAU5-M_yvMA1-I-HQ0tou3yZ4HHPw"
+						class="d-block w-100" alt="img not found">
+					<div class="carousel-caption d-none d-md-block">
+						<h2>Second slide label</h2>
+						<p>Some representative placeholder content for the second
+							slide.</p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img
+						src="https://static.moviecrow.com/marquee/kalki-2898-ad-ott-release-plans-for-the-prabhas-starrer/230663_thumb_665.jpg"
+						class="d-block w-100" alt="img not found">
+					<div class="carousel-caption d-none d-md-block">
+						<h2 class="h2">Kalki</h2>
+						<p>Some representative placeholder content for the third
+							slide.</p>
+					</div>
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button"
+				data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Movies</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">TV Shows</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							Login </a>
-						<ul class="dropdown-menu dropdown-menu-end"
-							aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="userlogin">User Login</a></li>
-							<li><a class="dropdown-item" href="adminlogin">Admin
-									Login</a></li>
-						</ul></li>
-				</ul>
-			</div>
+			<button class="carousel-control-next" type="button"
+				data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
 		</div>
-	</nav>
 
-
-
-	<!-- Carousel -->
-	<div id="carouselExampleCaptions" class="carousel slide"
-		data-bs-ride="carousel" data-bs-interval="2000">
-		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#carouselExampleCaptions"
-				data-bs-slide-to="0" class="active" aria-current="true"
-				aria-label="Slide 1"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions"
-				data-bs-slide-to="1" aria-label="Slide 2"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions"
-				data-bs-slide-to="2" aria-label="Slide 3"></button>
-		</div>
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="https://i.ytimg.com/vi/nsC5PhXS19Y/maxresdefault.jpg"
-					class="d-block w-100" alt="img not found">
-				<div class="carousel-caption d-none d-md-block">
-					<h2>First slide label</h2>
-					<p>Some representative placeholder content for the first slide.</p>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img
-					src="https://i.ytimg.com/vi/pAs-VavcAWA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAU5-M_yvMA1-I-HQ0tou3yZ4HHPw"
-					class="d-block w-100" alt="img not found">
-				<div class="carousel-caption d-none d-md-block">
-					<h2>Second slide label</h2>
-					<p>Some representative placeholder content for the second
-						slide.</p>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img
-					src="https://images.hindustantimes.com/img/2021/01/11/1600x900/immortal_1610348165339_1610348191039.jpg"
-					class="d-block w-100" alt="img not found">
-				<div class="carousel-caption d-none d-md-block">
-					<h2>Third slide label</h2>
-					<p>Some representative placeholder content for the third slide.</p>
-				</div>
-			</div>
-		</div>
-		<button class="carousel-control-prev" type="button"
-			data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button"
-			data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Next</span>
-		</button>
 	</div>
-
-
 
 
 	<!-- Movie Grid -->
@@ -123,7 +118,7 @@
 			<!-- Previous Button -->
 			<button class="scroll-btn scroll-btn-prev"
 				onclick="document.querySelector('.scrollable').scrollBy(-200, 0)">
-				<</button>
+				</button>
 
 			<!-- Movie Cards Container -->
 			<div class="scrollable">
@@ -139,7 +134,7 @@
 							</div>
 
 							<button class="btn-watch">
-								<a href="#" class="btn"> Watch Movie </a>
+								<a href="#" class="btn btn-success"> Watch Movie </a>
 							</button>
 						</div>
 
@@ -168,7 +163,7 @@
 						<div class="card-body">
 							<h5 class="card-title">Movie Title: ${m.getMovtitle()}</h5>
 							<!--  <p class="card-text">${m.getMovdescription()}</p>-->
-							<a href="#" class="btn btn-primary">Watch Now</a>
+							<a href="#" class="btn btn-success">Watch Now</a>
 						</div>
 					</div>
 				</div>
@@ -181,9 +176,11 @@
 				alt="mobile-tablet-desktop img not found!"
 				src='<c:url value="/resources/IMG/MobileTabletDesktop.jpg" />'>
 			<div class="col-6 ">
-				<h1 class="h1 text-center mt-5"><strong>Watch Everywhere</strong></h1>
-				<h3 >Stream unlimited movies and TV shows on your phone, tablet,
-					laptop, and TV.</h3>
+				<h1 class="h1 text-center mt-5">
+					<strong>Watch Everywhere</strong>
+				</h1>
+				<h3>Stream unlimited movies and TV shows on your phone,
+					tablet, laptop, and TV.</h3>
 
 			</div>
 		</div>

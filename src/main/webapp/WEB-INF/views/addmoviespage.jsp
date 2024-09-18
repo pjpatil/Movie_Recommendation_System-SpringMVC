@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add movie page</title>
 </head>
 <body>
 	<jsp:include page="adminNavbar.jsp"></jsp:include>

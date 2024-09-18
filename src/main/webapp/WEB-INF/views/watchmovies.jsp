@@ -29,76 +29,96 @@
 
 
 	<div class="container-xxl">
+		<form id="feedbackForm" name="frm" action="giveratinguser" method="POST">
+			<div class="row bg-light p-2 rounded">
 
-		<div class="row bg-light p-2 rounded">
-			<div class="col-12 ">
-				<div class="ratio ratio-16x9">
-					<iframe src="${movie.getMovlink()}" title="YouTube video"
-						allowfullscreen style="width: 100%; height: 100%;"></iframe>
-				</div>
-			</div>
-			<h2 class="text-center mt-2">Movie Title: ${movie.getMovtitle()}</h2>
-			<div class="col-12 ">
-				<div class="star-rating">
-					<h4>
-						<strong>Total Rating:</strong><span class="star" data-value="1">&#9733;</span>
-						<span class="star" data-value="2">&#9733;</span> <span
-							class="star" data-value="3">&#9733;</span> <span class="star"
-							data-value="4">&#9733;</span> <span class="star" data-value="5">&#9733;</span>
-						<span id="totalRating">movie.getTotalRating()</span>/5
-					</h4>
-				</div>
-			</div>
-
-			<div class="col-12">
-				<p class="h5">
-					<strong>Release Date:</strong> ${movie.getMovdtrel()}
-				</p>
-				<p class="h5">
-					<strong>Description:</strong> ${movie.getMovdescription()}
-				</p>
-			</div>
-
-			<!-- Feedback Form Section -->
-			<div class="col-12 col-md-6 mb-4 mb-md-0">
-				<h3>Submit Your Feedback:</h3>
-
-				<form id="feedbackForm" action="giveratinguser" method="POST">
-					<div class="text-center mb-3">
-						<div class="d-flex justify-content-center">
-							<div class="star-rating">
-								<span class="star" data-value="1">&#9733;</span> <span
-									class="star" data-value="2">&#9733;</span> <span class="star"
-									data-value="3">&#9733;</span> <span class="star" data-value="4">&#9733;</span>
-								<span class="star" data-value="5">&#9733;</span>
-							</div>
-						</div>
-						<p id="rating-value" class="mt-2">Rating: 0</p>
+				<div class="col-12 ">
+					<div class="ratio ratio-16x9">
+						<iframe src="${movie.getMovlink()}" title="YouTube video"
+							allowfullscreen style="width: 100%; height: 100%;"></iframe>
 					</div>
-					<div class="mb-3">
+				</div>
+				<h2 class="text-center mt-2">Movie Title:
+					${movie.getMovtitle()}</h2>
+				<div class="col-12 ">
+					<div class="star-rating">
+						<h4>
+							<strong>Total Rating:</strong><span class="star" data-value="1">&#9733;</span>
+							<span class="star" data-value="2">&#9733;</span> <span
+								class="star" data-value="3">&#9733;</span> <span class="star"
+								data-value="4">&#9733;</span> <span class="star" data-value="5">&#9733;</span>
+							<span id="totalRating" name="totalRating">4.3</span>/5
+						</h4>
+					</div>
+
+					<p class="h5 ">
+						<strong>Genres : </strong> ${movie.getGentitle()}
+					</p>
+
+					<p class="h5 ">
+						<strong>Language : </strong> ${movie.getMovlang()}
+					</p>
+					<p class="h5 ">
+						<strong>Release Date : </strong> ${movie.getMovdtrel()}
+					</p>
+					<p class="h5">
+						<strong>Description:</strong> ${movie.getMovdescription()}
+					</p>
+
+				</div>
+
+				<br />
+				<!-- Feedback Form Section -->
+				<div class="col-12 col-md-6 mb-4 mb-md-0">
+					<h3>Submit Your Feedback:</h3>
+
+					<div class="text-center mb-3">
+						<label for="userRating" class="form-label">Your Rating:</label>
+						<div class="d-flex justify-content-center">
+							<select id="userRating" name="numrating" class="form-select">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+
+					</div>
+					<div class="text-center mb-3">
 						<label for="userFeedback" class="form-label">Your
 							Feedback:</label>
-						<textarea id="userFeedback" class="form-control" rows="4"></textarea>
+						<textarea id="userFeedback" class="form-control" rows="4"
+							name="feedback" value=""></textarea>
 					</div>
-					<button type="button" class="btn btn-primary"
-						onclick="submitFeedback()">Submit Feedback</button>
-				</form>
-				
+
+					<button class="btn btn-outline-success form-control" type="submit"
+						name="s" value="Submit Feedback" onclick="submitFeedback()">Submit
+						Feedback</button>
+
+				</div>
+
+				<!-- All Feedback Section -->
+
+				<div class="col-12 col-md-6">
+
+					<h3>All Feedback:</h3>
+					<ul id="feedbackList"
+						class="list-unstyled border p-3 overflow-auto"
+						style="max-height: 400px;">
+						<c:forEach var="r" items="${userRating}">
+							<li>
+								<h6 class="h6">${r.getUname()}</h6> <i>Date:${r.getWatchdate()}</i> <br/>
+								<i>Rating :${r.getNumrating()}/5</i>
+								<p><strong>Feedback :</strong>${r.getFeedback()}</p>
+
+							</li>
+						</c:forEach>
+					</ul>
+					
+				</div>
 			</div>
-
-			<!-- All Feedback Section -->
-
-			<div class="col-12 col-md-6">
-			
-				<h3>All Feedback:</h3>
-				<ul id="feedbackList" class="list-unstyled border p-3 overflow-auto"
-					style="max-height: 400px;">
-					<!-- Feedback items will be appended here -->
-				</ul>
-			</div>
-		</div>
-
-
+		</form>
 	</div>
 
 	<!-- Footer -->

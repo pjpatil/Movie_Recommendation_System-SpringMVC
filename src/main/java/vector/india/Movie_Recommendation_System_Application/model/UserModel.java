@@ -1,6 +1,6 @@
 package vector.india.Movie_Recommendation_System_Application.model;
 
-public class UserModel {
+public class UserModel extends RatingModel {
 	private int uid;
 	private String uname;
 	private String birthday;

@@ -23,8 +23,8 @@
 
 	<div class="container-fluid container-md ">
 
-		<input class="form-control" type="text" name="gentitle" value=""
-			placeholder="Type here genres..." /> <br />
+		<input class="form-control" type="text" name="" value=""
+			placeholder="Type here movie name..." /> <br />
 
 	</div>
 	<div class="container-fluid m-2 text-center ">
@@ -37,10 +37,8 @@
 					<th scope="col">Title</th>
 					<th scope="col">Language</th>
 					<th scope="col">Country</th>
-					<th scope="col">Movie Year</th>
 					<th scope="col">Movie rel Date</th>
 					<th scope="col">Movie Youtube Link</th>
-					<th scope="col">Movie Description</th>
 					<th scope="col">Movie Poster</th>
 
 					<th scope="col">DELETE</th>
@@ -54,16 +52,14 @@
 						<td>${m.getMovtitle()}</td>
 						<td>${m.getMovlang()}</td>
 						<td>${m.getCountry()}</td>
-						<td>${m.getMovyear()}</td>
 						<td>${m.getMovdtrel()}</td>
 						<td>${m.getMovlink()}</td>
-						<td>${m.getMovdescription()}</td>
 						<td><img
 							src="${pageContext.request.contextPath}/resources/IMG/${m.getMovtitle().replaceAll(' ','')}.jpg"
 							alt="Image not found" class="img-fluid"
 							style="max-width: 100px; max-height: 100px;"></td>
 
-						<td><a href='kkdelgen?genid=${s.getGenid()}'>delete</a></td>
+						<td><a href='#kkdelgen?genid=${s.getGenid()}'><svg class="bi" aria-hidden="true"><use xlink:href="#box-seam"></use></svg>delete</a></td>
 						<td><a href="#">update</a></td>
 					</tr>
 				</c:forEach>

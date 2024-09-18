@@ -22,7 +22,7 @@
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Movie Application</a>
+			<a class="navbar-brand fw-bold" href="#">Movie Application</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarNav"
 				aria-controls="navbarNav" aria-expanded="false"
@@ -30,17 +30,17 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link " href="home">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Movies</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Genres</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="moviesearchpage">Search</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">TV Shows</a></li>
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-5">
+					<li class="nav-item"><a class="nav-link text-light fw-bold" href="home">Home</a></li>
+					<li class="nav-item"><a class="nav-link text-light fw-bold" href="#">Movies</a></li>
+					<li class="nav-item"><a class="nav-link text-light fw-bold" href="#">TV Shows</a></li>
+					<li class="nav-item"><a class="nav-link text-light fw-bold" href="#">Genres</a></li>
+					<li class="nav-item"><a class="nav-link text-light fw-bold"
+						href="moviesearchpage">Search Movies</a></li>
 				</ul>
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 				
-					<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown "><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							User Profile </a>
@@ -59,7 +59,7 @@
 								}
 								%>
 							</li>
-							<li><a class="dropdown-item " href="#">View Profile</a></li>
+							<li><a class="dropdown-item " href="viewprofile">View Profile</a></li>
 							<li><a class="dropdown-item" href="#">Watchlist</a></li>
 							<li><a class="dropdown-item" href="#">Delete Account</a></li>
 							<li><a class="dropdown-item" style='color:red;' href="logout">Logout</a></li>
