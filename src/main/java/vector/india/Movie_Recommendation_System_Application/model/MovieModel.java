@@ -9,6 +9,7 @@ public class MovieModel extends GenresModel {
 	private String country;
 	private String movlink;
 	private String movdescription;
+	private float totalrating;
 	
 	public int getMovid() {
 		return movid;
@@ -59,7 +60,12 @@ public class MovieModel extends GenresModel {
 	public void setMovdescription(String movdescription) {
 		this.movdescription = movdescription;
 	}
-	
+	public float getTotalrating() {
+		return totalrating;
+	}
+	public void setTotalrating(float totalrating) {
+		this.totalrating = totalrating;
+	}
 	
 	
 }

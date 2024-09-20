@@ -36,12 +36,13 @@ import vector.india.Movie_Recommendation_System_Application.service.UserService;
 public class HomeController {
 
 	@Autowired
+	UserService userService;
+	
+	
+	@Autowired
 	GenresService genresService;
 	@Autowired
 	MovieService movieService;
-	@Autowired
-	UserService userService;
-
 	@Autowired
 	RatingService ratingService;
 
@@ -244,6 +245,8 @@ public class HomeController {
 //		HttpSession session = request.getSession(false);
 		list = movieService.getAllMovies();
 		map.put("getallmovies", list);
+		List mlist=movieService.getTopFiveMovies();
+		map.put("gettopmovies",mlist);
 		return "index";
 	}
 
@@ -264,6 +267,9 @@ public class HomeController {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", user);
 
+			List mlist=movieService.getTopFiveMovies();
+			map.put("gettopmovies",mlist);
+			
 			list = movieService.getAllMovies();
 			map.put("getallmovies", list);
 			return "userHome";
@@ -284,6 +290,8 @@ public class HomeController {
 	// it call user home page
 	@RequestMapping("/home")
 	public String homepage(Map map) {
+		List mlist=movieService.getTopFiveMovies();
+		map.put("gettopmovies",mlist);
 		list = movieService.getAllMovies();
 		map.put("getallmovies", list);
 		return "userHome";
@@ -329,7 +337,6 @@ public class HomeController {
 		mmodel.setMovlink(embedUrl);
 
 //	    System.out.println("link is : "+embedUrl);
-
 		
 //	    System.out.println(model.getMovid());
 //	    System.out.println(model.getMovtitle());
@@ -350,10 +357,10 @@ public class HomeController {
 
 		int uid = user.getUid();
 		int movieid = mmodel.getMovid();
-		System.out.println(user.getUid());
-		System.out.println(mmodel.getMovid());
-		System.out.println(rating.getNumrating());
-		System.out.println(rating.getFeedback());
+//		System.out.println(user.getUid());
+//		System.out.println(mmodel.getMovid());
+//		System.out.println(rating.getNumrating());
+//		System.out.println(rating.getFeedback());
 
 		boolean b = ratingService.giveRatingMoviebyUser(rating,uid,movieid);
 		
@@ -364,8 +371,18 @@ public class HomeController {
 		map.put("userRating", rlist);
 		map.put("movie", mmodel);
 		
-
 		return "watchmovies";
+	}
+	
+	
+//	user Watch List or history.....
+	@RequestMapping("/watchlist")
+	public String userWatchlist(Map map) {
+		int uid=user.getUid();
+		List watchlist=ratingService.getUserWatchlist(uid);
+		
+		map.put("watchlist", watchlist);
+		return "userWatchlist";
 	}
 
 	

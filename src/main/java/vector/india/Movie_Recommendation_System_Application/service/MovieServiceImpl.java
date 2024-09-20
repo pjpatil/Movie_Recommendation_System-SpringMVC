@@ -38,6 +38,11 @@ public class MovieServiceImpl implements MovieService {
 		return movieRepository.getMovieByName(name);
 	}
 
+	@Override
+	public List getTopFiveMovies() {
+		return movieRepository.getTopFiveMovies();
+	}
+
 	
 
 }

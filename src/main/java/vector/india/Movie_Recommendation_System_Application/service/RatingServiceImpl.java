@@ -24,4 +24,9 @@ public class RatingServiceImpl implements RatingService {
 		return ratingRepository.movieRatingbyUser(movieid);
 	}
 
+	@Override
+	public List getUserWatchlist(int uid) {
+		return ratingRepository.getUserWatchlist(uid);
+	}
+
 }

@@ -16,6 +16,8 @@ public interface MovieRepository {
 
 	public MovieModel getMovieByName(String name);
 
+	public List getTopFiveMovies();
+
 	
 
 }

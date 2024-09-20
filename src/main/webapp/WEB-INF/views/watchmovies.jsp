@@ -47,7 +47,7 @@
 							<span class="star" data-value="2">&#9733;</span> <span
 								class="star" data-value="3">&#9733;</span> <span class="star"
 								data-value="4">&#9733;</span> <span class="star" data-value="5">&#9733;</span>
-							<span id="totalRating" name="totalRating">4.3</span>/5
+							<span id="totalRating" name="totalRating">${movie.getTotalrating()}</span>/5
 						</h4>
 					</div>
 

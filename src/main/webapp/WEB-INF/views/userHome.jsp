@@ -98,18 +98,21 @@
 				<img src="https://i.ytimg.com/vi/nsC5PhXS19Y/maxresdefault.jpg"
 					class="d-block w-100" alt="img not found">
 				<div class="carousel-caption d-none d-md-block">
-					<h2 class="h2">First slide label</h2>
-					<p>Some representative placeholder content for the first slide.</p>
+					<h2 class="h2">Chhaava</h2>
+					<p>Chhaava is an upcoming Hindi-language historical drama film
+						based on the life of Chhatrapati Sambhaji Maharaj, the son of
+						Chhatrapati Shivaji Maharaj</p>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img
-					src="https://i.ytimg.com/vi/pAs-VavcAWA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAU5-M_yvMA1-I-HQ0tou3yZ4HHPw"
+				<img src="https://i.ytimg.com/vi/J_wWNZt2oUQ/maxresdefault.jpg"
 					class="d-block w-100" alt="img not found">
 				<div class="carousel-caption d-none d-md-block">
-					<h2>Second slide label</h2>
-					<p>Some representative placeholder content for the second
-						slide.</p>
+					<h2>Bhool Bhulaiyaa 3</h2>
+					<p>Bhool Bhulaiyaa 3 is a horror-comedy film about a
+						ghostbuster named Rooh Baba who investigates a haunted mansion in
+						Kolkata to solve a mystery and uncover the truth behind a vengeful
+						spirit</p>
 				</div>
 			</div>
 			<div class="carousel-item">
@@ -136,12 +139,7 @@
 
 
 	<!-- Movie Grid -->
-
-
-
-	<div class="container-fluid">
-
-
+	<%-- <div class="container-fluid">
 		<h2 class="h2 mt-3">Top 10 Movies</h2>
 		<div class="d-flex position-relative">
 			<!-- Previous Button -->
@@ -167,38 +165,60 @@
 									Watch Movie </a>
 							</button>
 						</div>
-
 					</div>
 
 				</c:forEach>
 			</div>
-
 			<!-- Next Button -->
 			<button class="scroll-btn scroll-btn-next"
 				onclick="document.querySelector('.scrollable').scrollBy(200, 0)">
 				></button>
-		</div>
+		</div> --%>
 
 
+	<div class="container-fluid  mt-4">
+		<h2 class="h2 mt-3">Top 5 Movies</h2>
 
-		<!-- Popular movies -->
-		<h2 class="h2 mt-3">Popular Movies</h2>
-		<div class="row">
-			<c:forEach var="m" items="${getallmovies}">
-				<div class="col-lg-3 col-md-6  mb-4">
-					<div class="card">
-						<img
-							src="${pageContext.request.contextPath}/resources/IMG/${m.getMovtitle().replaceAll(' ','')}.jpg"
-							alt="Image not found" class="card-img-top">
-						<div class="card-body">
-							<h5 class="card-title">Movie Title: ${m.getMovtitle()}</h5>
-							<p class="card-text">${m.getMovdescription()}</p>
-							<a href="viewmovie?name=${m.getMovtitle()}" class="btn btn-primary">Watch Now</a>
-						</div>
+		<div class="d-flex flex-nowrap overflow-auto">
+			<c:forEach var="m" items="${gettopmovies}">
+				<div class="card h-100 me-3" style="min-width: 18rem;">
+					<!-- Set width to 100% and fixed height -->
+					<img
+						src="${pageContext.request.contextPath}/resources/IMG/${m.getMovtitle().replaceAll(' ','')}.jpg"
+						class="card-img-top w-100"
+						style="height: 400px; object-fit: cover;" alt="Movie 1">
+					<div class="card-body text-center">
+						<h5 class="card-title">${m.getMovtitle()}</h5>
+
+						<a href="viewmovie?name=${m.getMovtitle()}"
+							class="btn btn-primary"> Watch Movie </a>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
+
+	</div>
+
+
+	<!-- Popular movies -->
+	<h2 class="h2 mt-3">All Popular Movies</h2>
+	<div class="row">
+		<c:forEach var="m" items="${getallmovies}">
+			<div class="col-lg-3 col-md-6  mb-4">
+				<div class="card">
+					<img
+						src="${pageContext.request.contextPath}/resources/IMG/${m.getMovtitle().replaceAll(' ','')}.jpg"
+						alt="Image not found" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">Movie Title: ${m.getMovtitle()}</h5>
+						<p class="card-text">${m.getMovdescription()}</p>
+						<a href="viewmovie?name=${m.getMovtitle()}"
+							class="btn btn-primary">Watch Now</a>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
 	</div>
 
 

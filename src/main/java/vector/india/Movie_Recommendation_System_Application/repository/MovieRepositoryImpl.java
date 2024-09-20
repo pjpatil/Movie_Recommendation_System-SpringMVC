@@ -29,7 +29,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 	@Override
 	public int addMovieAndGetId(final MovieModel movie) {
 
-		int value = template.update("insert into moviemodel values('0',?,?,?,?,?,?,?)", new PreparedStatementSetter() {
+		int value = template.update("insert into moviemodel values('0',?,?,?,?,?,?,?,null)", new PreparedStatementSetter() {
 
 			@Override
 			public void setValues(PreparedStatement ps) throws SQLException {
@@ -81,6 +81,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 				mm.setCountry(rs.getString(6));
 				mm.setMovlink(rs.getString(7));
 				mm.setMovdescription(rs.getString(8));
+				mm.setTotalrating(rs.getFloat(9));
 				return mm;
 			}
 		});
@@ -128,7 +129,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
 	@Override
 	public MovieModel getMovieByName(String name) {
-		String sql="SELECT m.movid, m.movtitle, m.movdtrel,m.movlang,m.movdescription,m.movlink,g.gentitle FROM moviemodel m \r\n"
+		String sql="SELECT m.movid, m.movtitle, m.movdtrel,m.movlang,m.movdescription,m.movlink,m.totalrating,g.gentitle FROM moviemodel m \r\n"
 				+ "JOIN moviegenresjoin mgj ON m.movid = mgj.movid \r\n"
 				+ "JOIN genresmodel g ON mgj.genid = g.genid WHERE m.movtitle='"+name+"'";
 		
@@ -144,7 +145,8 @@ public class MovieRepositoryImpl implements MovieRepository {
 					mm.setMovlang(rs.getString(4));
 					mm.setMovdescription(rs.getString(5));
 					mm.setMovlink(rs.getString(6));
-					mm.setGentitle(rs.getString(7));
+					mm.setTotalrating(rs.getFloat(7));
+					mm.setGentitle(rs.getString(8));
 				
 					return mm;
 				}
@@ -153,6 +155,29 @@ public class MovieRepositoryImpl implements MovieRepository {
         } catch (Exception e) {
             return null;
         }
+	}
+
+	@Override
+	public List getTopFiveMovies() {
+		list = template.query("select *from moviemodel order by movdtrel desc limit 5", new RowMapper<MovieModel>() {
+
+			@Override
+			public MovieModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+				MovieModel mm = new MovieModel();
+				mm.setMovid(rs.getInt(1));
+				mm.setMovtitle(rs.getString(2));
+				mm.setMovyear(rs.getInt(3));
+				mm.setMovlang(rs.getString(4));
+				mm.setMovdtrel(rs.getString(5));
+				mm.setCountry(rs.getString(6));
+				mm.setMovlink(rs.getString(7));
+				mm.setMovdescription(rs.getString(8));
+				mm.setTotalrating(rs.getFloat(9));
+				return mm;
+			}
+		});
+		return list;
+		
 	}
 
 		

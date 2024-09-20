@@ -60,7 +60,7 @@
 								%>
 							</li>
 							<li><a class="dropdown-item " href="viewprofile">View Profile</a></li>
-							<li><a class="dropdown-item" href="#">Watchlist</a></li>
+							<li><a class="dropdown-item" href="watchlist">Watchlist</a></li>
 							<li><a class="dropdown-item" href="#">Delete Account</a></li>
 							<li><a class="dropdown-item" style='color:red;' href="logout">Logout</a></li>
 						</ul></li>

@@ -21,33 +21,42 @@
 <link href='<c:url value="/resources/CSS/index.css" />' rel="stylesheet">
 </head>
 
-<body style="color: #000;background-color:#ffffff ;">
+<body style="color: #000; background-color: #ffffff;">
 
 	<!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top p-2">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Movie Application</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active text-light fw-bold" aria-current="page" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-light fw-bold" href="#">Movies</a></li>
-                    <li class="nav-item disabled " aria-disabled="true"><a class="nav-link fw-bold" href="#">TV Shows</a></li>
-                </ul>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="userlogin">User Login</a></li>
-                            <li><a class="dropdown-item" href="adminlogin">Admin Login</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top p-2">
+		<div class="container">
+			<a class="navbar-brand fw-bold" href="#">Movie Application</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a
+						class="nav-link active text-light fw-bold" aria-current="page"
+						href="#">Home</a></li>
+					<li class="nav-item"><a class="nav-link text-light fw-bold"
+						href="#">Movies</a></li>
+					<li class="nav-item disabled " aria-disabled="true"><a
+						class="nav-link fw-bold" href="#">TV Shows</a></li>
+				</ul>
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
+						<ul class="dropdown-menu dropdown-menu-end"
+							aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="userlogin">User Login</a></li>
+							<li><a class="dropdown-item" href="adminlogin">Admin
+									Login</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
 
 
@@ -69,19 +78,21 @@
 					<img src="https://i.ytimg.com/vi/nsC5PhXS19Y/maxresdefault.jpg"
 						class="d-block w-100" alt="img not found">
 					<div class="carousel-caption d-none d-md-block">
-						<h2>First slide label</h2>
-						<p>Some representative placeholder content for the first
-							slide.</p>
+						<h2 class="h2">Chhaava</h2>
+						<p>Chhaava is an upcoming Hindi-language historical drama film
+							based on the life of Chhatrapati Sambhaji Maharaj, the son of
+							Chhatrapati Shivaji Maharaj</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img
-						src="https://i.ytimg.com/vi/pAs-VavcAWA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAU5-M_yvMA1-I-HQ0tou3yZ4HHPw"
+					<img src="https://i.ytimg.com/vi/J_wWNZt2oUQ/maxresdefault.jpg"
 						class="d-block w-100" alt="img not found">
 					<div class="carousel-caption d-none d-md-block">
-						<h2>Second slide label</h2>
-						<p>Some representative placeholder content for the second
-							slide.</p>
+						<h2>Bhool Bhulaiyaa 3</h2>
+						<p>Bhool Bhulaiyaa 3 is a horror-comedy film about a
+							ghostbuster named Rooh Baba who investigates a haunted mansion in
+							Kolkata to solve a mystery and uncover the truth behind a
+							vengeful spirit</p>
 					</div>
 				</div>
 				<div class="carousel-item">
@@ -113,12 +124,12 @@
 	<!-- Movie Grid -->
 	<div class="container-fluid">
 
-		<h2 class="h2 mt-3">Top 10 Movies</h2>
+		<h2 class="h2 mt-3">Top 5 Movies</h2>
 		<div class="d-flex position-relative">
 			<!-- Previous Button -->
 			<button class="scroll-btn scroll-btn-prev"
 				onclick="document.querySelector('.scrollable').scrollBy(-200, 0)">
-				</button>
+			</button>
 
 			<!-- Movie Cards Container -->
 			<div class="scrollable">
@@ -152,7 +163,7 @@
 
 
 		<!-- Popular Movies -->
-		<h2 class="h2 mt-3">Popular Movies</h2>
+		<h2 class="h2 mt-3">All Popular Movies</h2>
 		<div class="row">
 			<c:forEach var="m" items="${getallmovies}">
 				<div class="col-lg-3 col-md-6  mb-4">
@@ -179,8 +190,8 @@
 				<h1 class="h1 text-center mt-5">
 					<strong>Watch Everywhere</strong>
 				</h1>
-				<h3>Stream unlimited movies and TV shows on your phone,
-					tablet, laptop, and TV.</h3>
+				<h3>Stream unlimited movies and TV shows on your phone, tablet,
+					laptop, and TV.</h3>
 
 			</div>
 		</div>

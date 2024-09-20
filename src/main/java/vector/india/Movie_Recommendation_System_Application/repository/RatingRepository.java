@@ -8,6 +8,8 @@ public interface RatingRepository {
 
 	boolean giveRatingMoviebyUser(RatingModel rating, int uid, int movieid);
 
-	List movieRatingbyUser(int movieid);
+	public List movieRatingbyUser(int movieid);
+
+	public List getUserWatchlist(int uid);
 
 }

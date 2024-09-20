@@ -10,4 +10,6 @@ public interface RatingService {
 
 	public List movieRatingbyUser(int movieid);
 
+	public  List getUserWatchlist(int uid);
+
 }

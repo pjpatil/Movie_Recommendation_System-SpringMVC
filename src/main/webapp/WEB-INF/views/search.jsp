@@ -18,7 +18,7 @@
 		import="vector.india.Movie_Recommendation_System_Application.model.GenresModel,java.util.*"%>
 
 	<div class="container-fluid bg-light p-5">
-		<h1 class="text-center h1" >Search Movie</h1>
+		<h1 class="text-center h1">Search Movie</h1>
 		<div class="container text-center">
 			<!-- Form -->
 			<form id="frm" action="searchMovie" method="POST">
@@ -31,8 +31,7 @@
 					</div>
 
 					<div class="form-group col-md-4">
-						<label for="inputGenre" class="h4">Movie Genre</label>
-						<input
+						<label for="inputGenre" class="h4">Movie Genre</label> <input
 							type="text" class="form-control" id="inputName" name="movieGenre"
 							placeholder="type movie genres....">
 					</div>
@@ -58,51 +57,42 @@
 		<!-- Table to display search results -->
 
 		<div class="container mt-4">
-			<c:if test="${not empty movieList}">
-				<table class="table table-bordered table-hover"
-					style="background-color: lightblue;">
-					<thead class="table-dark">
-						<tr>
-							<th scope="col">Sr.No</th>
-							<th scope="col">Title</th>
-							<th scope="col">Release Date</th>
-							<th scope="col">Genre</th>
-							<th scope="col">Poster</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="m" items="${movieList}">
-							<tr>
-								<th scope="row">${m.getMovid()}</th>
-								<td>${m.getMovtitle()}</td>
-								<td>${m.getMovdtrel()}</td>
-								<td>${m.getGentitle()}</td>
-								<td><img
-									src="${pageContext.request.contextPath}/resources/IMG/${m.getMovtitle().replaceAll(' ', '')}.jpg"
-									alt="Image not found" class="img-fluid"
-									style="max-width: 100px; max-height: 100px;"></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</c:if>
 
-			<c:if test="${empty movieList}">
-				<p class="text-center">No movies found.</p>
-			</c:if>
+			<div class="row">
+				<c:forEach var="m" items="${movieList}">
+					<div class="col-lg-3 col-md-6  mb-4">
+						<div class="card">
+							<img
+								src="${pageContext.request.contextPath}/resources/IMG/${m.getMovtitle().replaceAll(' ','')}.jpg"
+								alt="Image not found" class="card-img-top">
+							<div class="card-body">
+								<h5 class="card-title">Movie Title: ${m.getMovtitle()}</h5>
+								<p>Movie Genres :${m.getGentitle()}</p>
+								<p class="card-text">${m.getMovdescription()}</p>
+								<a href="viewmovie?name=${m.getMovtitle()}"
+									class="btn btn-primary">Watch Now</a>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+				<c:if test="${empty movieList}">
+					<p class="text-center">No movies found.</p>
+				</c:if>
+			</div>
+
 		</div>
-	</div>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkv3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7HUbX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+			integrity="sha384-KJ3o2DKtIkv3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7HUbX39j7fakFPskvXusvfa0b4Q"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"></script>
 </body>
 </html>
