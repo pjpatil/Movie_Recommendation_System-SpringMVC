@@ -21,11 +21,37 @@
 <body>
 	<!-- User Menu navbar -->
 	<jsp:include page="userNavbar.jsp"></jsp:include>
-	<h1>hi user</h1>
+	<div class="container profile-container" style="width:600px">
+		<h2 class="text-center mb-4">User Profile</h2>
+		<form>
+			<!-- Username -->
+			<div class="form-group">
+				<label for="uname">Username</label> <input type="text"
+					class="form-control" id="uname" value="${user.getUname()}">
+			</div>
 
- 
+			<!-- Birthday -->
+			<div class="form-group">
+				<label for="birthday">Birthday</label> <input type="date"
+					class="form-control" id="birthday" value="${user.getBirthday()}">
+			</div>
 
+			<!-- Mobile Number -->
+			<div class="form-group">
+				<label for="umobileno">Mobile Number</label> <input type="tel"
+					class="form-control" id="umobileno" value="${user.getUmobileno()}">
+			</div>
 
+			<!-- Password -->
+			<div class="form-group">
+				<label for="upassword">Password</label> <input type="password"
+					class="form-control" id="upassword" value="${user.getUpassword()}">
+			</div>
+
+			<!-- Update Button -->
+			<button type="submit" class="btn btn-primary btn-block">Update</button>
+		</form>
+	</div>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"

@@ -29,7 +29,8 @@
 
 
 	<div class="container-xxl">
-		<form id="feedbackForm" name="frm" action="giveratinguser" method="POST">
+		<form id="feedbackForm" name="frm" action="giveratinguser"
+			method="POST">
 			<div class="row bg-light p-2 rounded">
 
 				<div class="col-12 ">
@@ -108,14 +109,19 @@
 						style="max-height: 400px;">
 						<c:forEach var="r" items="${userRating}">
 							<li>
-								<h6 class="h6">${r.getUname()}</h6> <i>Date:${r.getWatchdate()}</i> <br/>
-								<i>Rating :${r.getNumrating()}/5</i>
-								<p><strong>Feedback :</strong>${r.getFeedback()}</p>
+								<p class="m-1">
+								<h6 >
+									<i class="fas fa-user footer-icon" > ${r.getUname()}</i>
+								</h6>
+	
+							<i>Rating :${r.getNumrating()}/5</i></br> <i>Date:${r.getWatchdate()}</i>
+								</br>
+							<strong>Feedback :</strong>${r.getFeedback()}</p>
 
 							</li>
 						</c:forEach>
 					</ul>
-					
+
 				</div>
 			</div>
 		</form>

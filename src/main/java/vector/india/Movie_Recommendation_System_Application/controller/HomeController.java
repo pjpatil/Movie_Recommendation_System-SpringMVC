@@ -282,8 +282,8 @@ public class HomeController {
 	
 	// View User Profile 
 	@RequestMapping("/viewprofile")
-	public String viewProfile() {
-		
+	public String viewProfile(Map map) {
+		map.put("user",user);
 		return "userProfile";
 	}
 
@@ -320,30 +320,20 @@ public class HomeController {
 //	view movie by name in watch option any where
 	@RequestMapping("/viewmovie")
 	public String watchMovie(@RequestParam("name") String name, Map<String, Object> map) {
-
 		mmodel = movieService.getMovieByName(name);
 
 		// Extract the original movie link
 		String link = mmodel.getMovlink();
-
 		// Remove the first 17 characters and get the video ID
 		String videoId = link.substring(17, link.indexOf('?'));
-
 		// Construct the new embed URL
 		String embedUrl = "https://www.youtube.com/embed/" + videoId;
 		embedUrl.trim();
 
 		// Update the movlink in the MovieModel
 		mmodel.setMovlink(embedUrl);
-
 //	    System.out.println("link is : "+embedUrl);
-		
-//	    System.out.println(model.getMovid());
-//	    System.out.println(model.getMovtitle());
-//	    System.out.println(model.getMovdtrel());
-//	    System.out.println(model.getMovlink()); // Should now be the embed URL
-//	    System.out.println(model.getMovdescription());
-//	    System.out.println(model.getGentitle());
+
 		int movieid = mmodel.getMovid();
 		List rlist=ratingService.movieRatingbyUser(movieid);
 		map.put("userRating", rlist);
@@ -352,18 +342,14 @@ public class HomeController {
 		return "watchmovies";
 	}
 
+//	User Give rating for movie
 	@RequestMapping("/giveratinguser")
 	public String giveRatingMoviebyUser(RatingModel rating, Map map) {
 
 		int uid = user.getUid();
 		int movieid = mmodel.getMovid();
-//		System.out.println(user.getUid());
-//		System.out.println(mmodel.getMovid());
-//		System.out.println(rating.getNumrating());
-//		System.out.println(rating.getFeedback());
 
 		boolean b = ratingService.giveRatingMoviebyUser(rating,uid,movieid);
-		
 //		list = movieService.getAllMovies();
 //		map.put("getallmovies", list);
 		
@@ -385,5 +371,16 @@ public class HomeController {
 		return "userWatchlist";
 	}
 
+//	--------------------------------------  Admin footer section  --------------------------------------------------
+	
+	@RequestMapping("/adminProfile")
+	public String AdminProfile() {
+		return "AdminProfile";
+	}
+	
+	@RequestMapping("/companyInfo")
+	public String CompanyInfo() {
+		return "CompanyInfo";
+	}
 	
 }

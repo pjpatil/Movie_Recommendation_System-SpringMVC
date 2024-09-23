@@ -55,7 +55,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 //		System.out.println("mooooooooooo id:" + mid);
 //		System.out.println("gggggenn  id:" + genid);
 
-		int value = template.update("INSERT INTO MovieGenresJoin values ('0',?, ?)", new PreparedStatementSetter() {
+		int value = template.update("insert into MovieGenresJoin values ('0',?, ?)", new PreparedStatementSetter() {
 			@Override
 			public void setValues(PreparedStatement ps) throws SQLException {
 				ps.setInt(1, mid);
@@ -90,27 +90,27 @@ public class MovieRepositoryImpl implements MovieRepository {
 
 	@Override
 	public List<MovieModel> searchMovies(String movieTitle, String movieGenre, String yearFrom, String yearTo) {
-        StringBuilder sql = new StringBuilder("SELECT m.movid, m.movtitle, m.movdtrel, g.gentitle FROM moviemodel m " +
-                "JOIN moviegenresjoin mgj ON m.movid = mgj.movid " +
-                "JOIN genresmodel g ON mgj.genid = g.genid WHERE 1=1");
+        StringBuilder sql = new StringBuilder("select m.movid, m.movtitle, m.movdtrel, g.gentitle from  moviemodel m " +
+                "join moviegenresjoin mgj on m.movid = mgj.movid " +
+                "join genresmodel g on mgj.genid = g.genid where  1=1");
 
         List<Object> params = new ArrayList<Object>();
 
         // Add search filters if provided
         if (movieTitle != null && !movieTitle.isEmpty()) {
-            sql.append(" AND m.movtitle LIKE ?");
+            sql.append(" and m.movtitle like ?");
             params.add("%" + movieTitle + "%");
         }
         if (movieGenre != null && !movieGenre.isEmpty()) {
-            sql.append(" AND g.gentitle LIKE ?");
+            sql.append(" and g.gentitle like ?");
             params.add("%" + movieGenre + "%");
         }
         if (yearFrom != null && !yearFrom.isEmpty()) {
-            sql.append(" AND m.movdtrel >= ?");
+            sql.append(" and m.movdtrel >= ?");
             params.add(java.sql.Date.valueOf(yearFrom));
         }
         if (yearTo != null && !yearTo.isEmpty()) {
-            sql.append(" AND m.movdtrel <= ?");
+            sql.append(" and m.movdtrel <= ?");
             params.add(java.sql.Date.valueOf(yearTo));
         }
 
@@ -129,9 +129,9 @@ public class MovieRepositoryImpl implements MovieRepository {
 
 	@Override
 	public MovieModel getMovieByName(String name) {
-		String sql="SELECT m.movid, m.movtitle, m.movdtrel,m.movlang,m.movdescription,m.movlink,m.totalrating,g.gentitle FROM moviemodel m \r\n"
-				+ "JOIN moviegenresjoin mgj ON m.movid = mgj.movid \r\n"
-				+ "JOIN genresmodel g ON mgj.genid = g.genid WHERE m.movtitle='"+name+"'";
+		String sql="select m.movid, m.movtitle, m.movdtrel,m.movlang,m.movdescription,m.movlink,m.totalrating,g.gentitle from moviemodel m \r\n"
+				+ "join moviegenresjoin mgj on m.movid = mgj.movid \r\n"
+				+ "join genresmodel g on mgj.genid = g.genid where m.movtitle='"+name+"'";
 		
 		try {
             return template.queryForObject(sql, new RowMapper<MovieModel>() {

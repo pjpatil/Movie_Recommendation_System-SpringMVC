@@ -31,10 +31,10 @@
 				<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
 					<h5>About</h5>
 					<ul>
-						<li><a href="#"><i class="fas fa-info-circle footer-icon"></i>
+						<li><a href="companyInfo"><i class="fas fa-info-circle footer-icon"></i>
 								Company Info</a></li>
-						<li><a href="#"><i class="fas fa-briefcase footer-icon"></i>
-								Careers</a></li>
+						<li><a href="adminProfile"><i class="fas fa-user-alt footer-icon "></i>
+								Admin Profile</a></li>
 						<li><a href="#"><i class="fas fa-newspaper footer-icon"></i>
 								Press Releases</a></li>
 					</ul>
@@ -58,11 +58,11 @@
 				<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
 					<h5>Account</h5>
 					<ul>
-						<li><a href="#"><i class="fas fa-user footer-icon"></i>
+						<li><a href="viewprofile"><i class="fas fa-user footer-icon"></i>
 								Your Account</a></li>
 						<li><a href="#"><i class="fas fa-user-cog footer-icon"></i>
 								Manage Your Prime</a></li>
-						<li><a href="#"><i class="fas fa-list footer-icon"></i>
+						<li><a href="watchlist"><i class="fas fa-list footer-icon"></i>
 								Watchlist</a></li>
 					</ul>
 				</div>
