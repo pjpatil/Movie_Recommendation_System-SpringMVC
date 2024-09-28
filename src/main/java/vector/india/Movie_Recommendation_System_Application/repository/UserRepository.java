@@ -1,5 +1,7 @@
 package vector.india.Movie_Recommendation_System_Application.repository;
 
+import java.util.List;
+
 import vector.india.Movie_Recommendation_System_Application.model.UserModel;
 
 public interface UserRepository {
@@ -8,6 +10,8 @@ public interface UserRepository {
 
 	boolean userRegisterSave(UserModel model);
 
-	UserModel validUser(String uno, String upass);
+	public UserModel validUser(String uno, String upass);
+
+	public List getAllUser();
 
 }

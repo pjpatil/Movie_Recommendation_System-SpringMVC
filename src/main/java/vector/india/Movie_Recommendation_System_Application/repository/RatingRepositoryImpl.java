@@ -21,7 +21,7 @@ public class RatingRepositoryImpl implements RatingRepository {
 
 	@Override
 	public boolean giveRatingMoviebyUser(final RatingModel rating,final int uid,final int movieid) {
-		int value = template.update("insert into RatingModelJoin(watchid,uid,movid,numrating,feedback) values('0',?,?,?,?)", new PreparedStatementSetter() {
+		int value = template.update("insert into ratingmodeljoin(watchid,uid,movid,numrating,feedback) values('0',?,?,?,?)", new PreparedStatementSetter() {
 
 			@Override
 			public void setValues(PreparedStatement ps) throws SQLException {
@@ -45,7 +45,7 @@ public class RatingRepositoryImpl implements RatingRepository {
 
 	@Override
 	public List<UserModel> movieRatingbyUser(int movieid) {
-		List list=template.query("select u.uname,r.numrating,r.feedback,r.watchdate from RatingModelJoin r inner join usermodel u on r.uid=u.uid where movid='"+movieid+"' order by r.watchid desc", new RowMapper<UserModel>() {
+		List list=template.query("select u.uname,r.numrating,r.feedback,r.watchdate from ratingmodeljoin r inner join usermodel u on r.uid=u.uid where movid='"+movieid+"' order by r.watchid desc", new RowMapper<UserModel>() {
 
 			@Override
 			public UserModel mapRow(ResultSet rs, int rowNum) throws SQLException {

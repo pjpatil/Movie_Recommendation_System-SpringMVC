@@ -1,5 +1,7 @@
 package vector.india.Movie_Recommendation_System_Application.service;
 
+import java.util.List;
+
 import vector.india.Movie_Recommendation_System_Application.model.UserModel;
 
 public interface UserService {
@@ -8,7 +10,9 @@ public interface UserService {
 	
 //	boolean validUser(UserModel model);
 
-	UserModel validUser(String uno, String upass);
+	public UserModel validUser(String uno, String upass);
+
+	public List getAllUser();
 
 
 }

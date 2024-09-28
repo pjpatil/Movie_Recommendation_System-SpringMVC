@@ -34,7 +34,7 @@
 					<li class="nav-item"><a class="nav-link text-light fw-bold" href="home">Home</a></li>
 					<li class="nav-item"><a class="nav-link text-light fw-bold" href="#">Movies</a></li>
 					<li class="nav-item"><a class="nav-link text-light fw-bold" href="#">TV Shows</a></li>
-					<li class="nav-item"><a class="nav-link text-light fw-bold" href="#">Genres</a></li>
+					<li class="nav-item"><a class="nav-link text-light fw-bold" href="searchbygen">Genres</a></li>
 					<li class="nav-item"><a class="nav-link text-light fw-bold"
 						href="moviesearchpage">Search Movies</a></li>
 				</ul>
@@ -62,7 +62,7 @@
 							<li><a class="dropdown-item " href="viewprofile">View Profile</a></li>
 							<li><a class="dropdown-item" href="watchlist">Watchlist</a></li>
 							<li><a class="dropdown-item" href="#">Delete Account</a></li>
-							<li><a class="dropdown-item" style='color:red;' href="logout">Logout</a></li>
+							<li><a class="dropdown-item" style='color:red;' href="userlogout">Logout</a></li>
 						</ul></li>
 				</ul>
 			</div>

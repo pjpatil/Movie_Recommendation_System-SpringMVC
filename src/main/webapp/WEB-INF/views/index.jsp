@@ -44,7 +44,7 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a
-						class="nav-link active text-light fw-bold" aria-current="page"
+						class="nav-link active text-light fw-bold active" aria-current="page"
 						href="#">Home</a></li>
 					<li class="nav-item"><a class="nav-link text-light fw-bold"
 						href="#">Movies</a></li>

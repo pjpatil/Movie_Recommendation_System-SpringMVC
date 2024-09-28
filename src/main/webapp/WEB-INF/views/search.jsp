@@ -58,41 +58,49 @@
 
 		<div class="container mt-4">
 
-			<div class="row">
-				<c:forEach var="m" items="${movieList}">
-					<div class="col-lg-3 col-md-6  mb-4">
-						<div class="card">
+			<c:forEach var="m" items="${movieList}">
+				<div class="card mb-3" style="width: 800px;">
+					<div class="row g-0">
+						<div class="col-md-4">
 							<img
 								src="${pageContext.request.contextPath}/resources/IMG/${m.getMovtitle().replaceAll(' ','')}.jpg"
-								alt="Image not found" class="card-img-top">
+								class="img-fluid rounded-start" alt="Image not found">
+						</div>
+						<div class="col-md-8">
 							<div class="card-body">
 								<h5 class="card-title">Movie Title: ${m.getMovtitle()}</h5>
-								<p>Movie Genres :${m.getGentitle()}</p>
+								<p class="card-text">Movie Genres :${m.getGentitle()}</p>
 								<p class="card-text">${m.getMovdescription()}</p>
 								<a href="viewmovie?name=${m.getMovtitle()}"
 									class="btn btn-primary">Watch Now</a>
 							</div>
 						</div>
 					</div>
-				</c:forEach>
-				<c:if test="${empty movieList}">
-					<p class="text-center">No movies found.</p>
-				</c:if>
-			</div>
+				</div>
+			</c:forEach>
+			<c:if test="${empty movieList}">
+				<p class="text-center">No movies found.</p>
+			</c:if>
 
 		</div>
 
+	</div>
 
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-			integrity="sha384-KJ3o2DKtIkv3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7HUbX39j7fakFPskvXusvfa0b4Q"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-			crossorigin="anonymous"></script>
+	<!-- Footer -->
+	<jsp:include page="footer.jsp"></jsp:include>
+
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkv3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7HUbX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
 </body>
 </html>

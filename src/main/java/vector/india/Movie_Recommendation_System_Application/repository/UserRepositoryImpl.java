@@ -3,6 +3,7 @@ package vector.india.Movie_Recommendation_System_Application.repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -51,12 +52,11 @@ public class UserRepositoryImpl implements UserRepository {
 				ps.setString(4, model.getUpassword());
 			}
 		} );
-		
 		return value>0 ? true : false;
 	}
 
 	public UserModel validUser(String uno, String upass) {
-        String sql = "SELECT uid, uname, birthday, umobileno, upassword FROM usermodel WHERE umobileno = ? AND upassword = ?";
+        String sql = "select uid, uname, birthday, umobileno, upassword from usermodel where umobileno = ? and upassword = ?";
 
         try {
             return template.queryForObject(sql, new Object[]{uno, upass}, new RowMapper<UserModel>() {
@@ -71,17 +71,28 @@ public class UserRepositoryImpl implements UserRepository {
 		            user.setUpassword(rs.getString("upassword"));
 		            return user;
 				}
-            	
             });
-            
         } catch (Exception e) {
-           
             return null;
         }
-        
-        
-        
     }
+
+	@Override
+	public List<UserModel> getAllUser() {
+		List list = template.query("select *from usermodel", new RowMapper<UserModel>() {
+			@Override
+			public UserModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+				UserModel um = new UserModel();
+				um.setUid(rs.getInt(1));
+				um.setUname(rs.getString(2));
+				um.setBirthday(rs.getString(3));
+				um.setUmobileno(rs.getString(4));
+				um.setUpassword(rs.getString(5));
+				return um;
+			}
+		});
+		return list!=null?list:null;
+	}
 
   
 	

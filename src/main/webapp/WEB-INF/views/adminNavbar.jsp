@@ -20,7 +20,7 @@
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 	crossorigin="anonymous"></script>
 
-<!-- <link
+ <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
@@ -31,7 +31,7 @@
 	crossorigin="anonymous"></script>
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	rel="stylesheet"> -->
+	rel="stylesheet"> 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='reources/css/style.css'/>">
 
@@ -74,6 +74,10 @@
 				<!-- Add New Movies  -->
 				<li class="nav-item "><a class="nav-link text-light fw-bold"
 					href="addmovies">Add New Movies</a></li>
+					
+					<!-- Displaye  All User  -->
+				<li class="nav-item "><a class="nav-link text-light fw-bold"
+					href="getalluser">Displaye Users</a></li>
 
 				<!-- Search bar -->
 				<!-- <li class="nav-item">
@@ -94,8 +98,7 @@
 					<ul class="dropdown-menu dropdown-menu-end"
 						aria-labelledby="navbarDropdown">
 						<li><a class="dropdown-item fw-bold " href="#">View Profile</a></li>
-						<li><a class="dropdown-item fw-bold " href="#">Delete Profile</a></li>
-						<li><a class="dropdown-item fw-bold " href="adminlogin">Logout</a></li>
+						<li><a class="dropdown-item fw-bold " href="adminlogout">Logout</a></li>
 					</ul></li>
 			</ul>
 		</div>

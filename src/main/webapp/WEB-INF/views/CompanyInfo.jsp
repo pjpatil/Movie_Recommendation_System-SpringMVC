@@ -4,9 +4,18 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>CompanyInfo</title>
 </head>
 <body>
-	<h1>hi company</h1>
+	<!-- User Menu navbar -->
+	<jsp:include page="userNavbar.jsp"></jsp:include>
+	<h1> Hi ...</h1>
+
+	<h4>Wellcome Vector-India.in</h4>
+
+
+
+	<!-- Footer -->
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

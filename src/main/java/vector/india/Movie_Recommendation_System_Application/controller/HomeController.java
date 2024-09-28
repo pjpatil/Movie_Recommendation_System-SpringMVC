@@ -70,6 +70,14 @@ public class HomeController {
 	public String adminLogin() {
 		return "adminlogin";
 	}
+	
+	@RequestMapping("/adminlogout")
+	public String adminLogout(Map map) {
+		list = movieService.getAllMovies();
+		map.put("getallmovies", list);
+		return "index";
+	}
+	
 
 	// call Admin Registration page..
 	@RequestMapping("/adminregister")
@@ -143,7 +151,7 @@ public class HomeController {
 	}
 
 //	Add movie page
-	@RequestMapping("addmovies")
+	@RequestMapping("/addmovies")
 	public String addNewMovies(Map map) {
 		list = genresService.getAllGenres();
 		map.put("getallgen", list);
@@ -155,6 +163,9 @@ public class HomeController {
 	public String saveNewMovies(MovieModel movie, @RequestParam("genid") int genid, Map<String, Object> map,
 			@RequestParam("movposter") CommonsMultipartFile file, HttpServletRequest request, HttpSession session) {
 
+		list = genresService.getAllGenres();
+		map.put("getallgen", list);
+		
 		int mid = movieService.addMovieAndGetId(movie); // add movie and return movie id
 		System.out.println("get movie id is here " + mid);
 		if (mid > 0) {
@@ -224,10 +235,21 @@ public class HomeController {
 //  	  
 //    }
 
+	
+//	Display all user in Admin panel
+	@RequestMapping("/getalluser")
+	public String getAllUser(Map map) {
+		List li=userService.getAllUser();
+		
+		map.put("getalluser", li);
+		return "showAllUser";
+	}
+	
+	
 //	--------------------------------------  User Controller   --------------------------------------------------
 
 	// call user login page...
-	@RequestMapping("userlogin")
+	@RequestMapping("/userlogin")
 	public String userlogin() {
 		return "userlogin";
 	}
@@ -240,7 +262,7 @@ public class HomeController {
 	
 	
 
-	@RequestMapping("/logout")
+	@RequestMapping("/userlogout")
 	public String userLogout(HttpServletRequest request, Map map) {
 //		HttpSession session = request.getSession(false);
 		list = movieService.getAllMovies();
@@ -370,6 +392,15 @@ public class HomeController {
 		map.put("watchlist", watchlist);
 		return "userWatchlist";
 	}
+	
+	@RequestMapping("/searchbygen")
+	public String serchByGenres(Map map) {
+		list = genresService.getAllGenres();
+		map.put("getallgen", list);
+		return "SearchByGenres";
+	}
+	
+	
 
 //	--------------------------------------  Admin footer section  --------------------------------------------------
 	
@@ -382,5 +413,6 @@ public class HomeController {
 	public String CompanyInfo() {
 		return "CompanyInfo";
 	}
+	
 	
 }

@@ -2,7 +2,9 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<%@page import="javax.servlet.jsp.tagext.TagLibraryInfo"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page isELIgnored="false"%>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,28 +21,25 @@
 
 <body>
 
+	<!-- User Menu navbar -->
+	<jsp:include page="userNavbar.jsp"></jsp:include>
 	<div class="container mt-5">
 		<div class="card shadow-lg mx-auto"
 			style="max-width: 100%; width: 100%; max-width: 900px;">
 			<div class="card-body text-center">
 				<!-- Admin Picture -->
-				<img src="https://via.placeholder.com/150"
+				<img src="<c:url value="/resources/IMG/icon/profile.jpg" />"
 					alt="Admin Profile Picture"
-					class="rounded-circle mb-3 img-thumbnail img-fluid" width="150"
-					height="150">
+					class="rounded-circle mb-3 img-thumbnail img-fluid" width="170"
+					height="120">
 
 				<!-- Admin Name -->
-				<h2 class="card-title fw-bold">Pankaj Jijabrao PAtil</h2>
+				<h2 class="card-title fw-bold">Pankaj Jijabrao Patil</h2>
 
 				<!-- Admin Qualifications -->
 				<p class="card-text fs-5">
-					<strong>Qualification:</strong> B.Tech in Computer Science
-				</p>
-
-				<!-- Admin Working -->
-				<p class="card-text fs-5">
-					<strong>Working as:</strong> Senior Full Stack Developer at XYZ
-					Corp
+					<strong>Qualification:</strong> Bachelor Engineering in Information
+					Technology
 				</p>
 
 				<!-- Project Information -->
@@ -56,7 +55,8 @@
 					<ul>
 						<li><strong>Frontend:</strong> HTML, CSS, Bootstrap,
 							JavaScript.</li>
-						<li><strong>Backend:</strong> Java, Spring MVC, Servlet, JSP, Ajax</li>
+						<li><strong>Backend:</strong> Java, Spring MVC, Servlet, JSP,
+							Ajax</li>
 						<li><strong>Database:</strong> SQL, MySQL</li>
 					</ul>
 					<p>
@@ -73,26 +73,28 @@
 				<!-- Social Media Links -->
 				<div
 					class="d-flex flex-column flex-md-row justify-content-center mt-4">
-					<a href="https://github.com/yourusername" target="_blank"
+					<a href="https://github.com/pjpatil" target="_blank"
 						class="btn btn-outline-dark mx-2 my-1"> <i
 						class="bi bi-github"></i> GitHub
-					</a> <a href="https://www.linkedin.com/in/yourusername" target="_blank"
-						class="btn btn-outline-info mx-2 my-1"> <i
+					</a> <a href="https://www.linkedin.com/in/pankaj-patil-322a20246/"
+						target="_blank" class="btn btn-outline-info mx-2 my-1"> <i
 						class="bi bi-linkedin"></i> LinkedIn
-					</a> <a href="https://www.hackerrank.com/yourusername" target="_blank"
-						class="btn btn-outline-success mx-2 my-1"> <i
+					</a> <a href="https://www.hackerrank.com/profile/pjpatil12"
+						target="_blank" class="btn btn-outline-success mx-2 my-1"> <i
 						class="bi bi-hackerrank"></i> HackerRank
-					</a> <a href="https://www.instagram.com/yourusername" target="_blank"
+					</a> <a href="https://www.instagram.com/mr_pawar96k/" target="_blank"
 						class="btn btn-outline-danger mx-2 my-1"> <i
 						class="bi bi-instagram"></i> Instagram
-					</a> <a href="https://www.facebook.com/yourusername" target="_blank"
-						class="btn btn-outline-primary mx-2 my-1"> <i
-						class="bi bi-facebook"></i> Facebook
 					</a>
 				</div>
+
 			</div>
 		</div>
 	</div>
+
+
+	<!-- Footer -->
+	<jsp:include page="footer.jsp"></jsp:include>
 
 	<!-- Bootstrap JS -->
 	<script
